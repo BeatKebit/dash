@@ -134,3 +134,9 @@ make
 # CLion
 .idea
 cmake-build-debug
+
+# QT creator UI project
+src/qt/pac-qt.config
+src/qt/pac-qt.creator
+src/qt/pac-qt.files
+src/qt/pac-qt.includes
