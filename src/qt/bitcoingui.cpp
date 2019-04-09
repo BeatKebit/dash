@@ -558,8 +558,32 @@ void BitcoinGUI::createToolBars()
 #ifdef ENABLE_WALLET
     if(walletFrame)
     {
+        QWidget* spacer = new QWidget();
+        spacer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        spacer->setFixedWidth(120);
+        spacer->setFixedHeight(10);
+
+        QWidget* spacerBottomIcon = new QWidget();
+        spacerBottomIcon->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        spacerBottomIcon->setFixedWidth(120);
+        spacerBottomIcon->setFixedHeight(5);
+
+        QWidget* mainIcon = new QWidget();
+        mainIcon->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        mainIcon->setObjectName("toolbarIcon");
+        mainIcon->setFixedWidth(105);
+        mainIcon->setFixedHeight(105);
+
         QToolBar *toolbar = new QToolBar(tr("Tabs toolbar"));
-        toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+        toolbar->setObjectName("toolBar");
+        toolbar->setContextMenuPolicy(Qt::PreventContextMenu);
+        toolbar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+        addToolBar(Qt::LeftToolBarArea, toolbar);
+        toolbar->setOrientation(Qt::Vertical);
+        toolbar->setFixedWidth(120);
+        toolbar->addWidget(spacer);
+        toolbar->addWidget(mainIcon);
+        toolbar->addWidget(spacerBottomIcon);
         toolbar->addAction(overviewAction);
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
@@ -572,15 +596,32 @@ void BitcoinGUI::createToolBars()
         toolbar->setMovable(false); // remove unused icon in upper left corner
         overviewAction->setChecked(true);
 
+        //Rubik
+        //createHeaderBar();
+        //QSpacerItem *HeaderSpacer = new QSpacerItem(1,27, QSizePolicy::Fixed, QSizePolicy::Fixed);
+
         /** Create additional container for toolbar and walletFrame and make it the central widget.
             This is a workaround mostly for toolbar styling on Mac OS but should work fine for every other OSes too.
         */
-        QVBoxLayout *layout = new QVBoxLayout;
-        layout->addWidget(toolbar);
-        layout->addWidget(walletFrame);
+
+        QVBoxLayout *verticalLayout = new QVBoxLayout;
+        //Rubik
+        //verticalLayout->addSpacerItem(HeaderSpacer);
+        //verticalLayout->addWidget(headerFrame);
+        //:V
+        //verticalLayout->addWidget(toolbar);
+        verticalLayout->addWidget(walletFrame);
+        verticalLayout->setSpacing(0);
+        verticalLayout->setContentsMargins(QMargins());
+
+        QWidget* container = new QWidget();
+        container->setLayout(verticalLayout);
+        QHBoxLayout *layout = new QHBoxLayout;
+        layout->addWidget(container);
         layout->setSpacing(0);
         layout->setContentsMargins(QMargins());
         QWidget *containerWidget = new QWidget();
+        containerWidget->setObjectName("containerWidget");
         containerWidget->setLayout(layout);
         setCentralWidget(containerWidget);
     }
