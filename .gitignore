@@ -141,3 +141,5 @@ src/qt/pac-qt.creator
 src/qt/pac-qt.files
 src/qt/pac-qt.includes
 src/qt/pac-qt.creator.user
+generateMacWallet.sh
+
