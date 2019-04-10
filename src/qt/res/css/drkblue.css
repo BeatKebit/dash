@@ -637,7 +637,7 @@ QLineEdit#addressWidget, QLineEdit#tAmountWidget, QComboBox#dateWidget, QComboBo
  * Private Page
  */
 #framePrivateSend{
-    background-color: rgba(0,0,0,0.5); 
+    /*background-color: rgba(0,0,0,0.5); */
     border: 0px !important;
 }
 #labelPrivateSendHeader{
