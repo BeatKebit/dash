@@ -44,12 +44,15 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QFrame" name="frame">
+        <widget class="QFrame" name="frame_Balances">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
+         </property>
+         <property name="class" stdset="0">
+          <string>container</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
@@ -151,6 +154,9 @@
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
               </property>
+              <property name="class" stdset="0">
+               <string>pacCoinsLabel</string>
+              </property>
              </widget>
             </item>
             <item row="3" column="2">
@@ -209,6 +215,9 @@
               <property name="text">
                <string>Total:</string>
               </property>
+              <property name="class" stdset="0">
+               <string>titleLabel</string>
+              </property>
              </widget>
             </item>
             <item row="3" column="1">
@@ -234,6 +243,9 @@
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
               </property>
+              <property name="class" stdset="0">
+               <string>pacCoinsLabel</string>
+              </property>
              </widget>
             </item>
             <item row="2" column="3">
@@ -253,6 +265,9 @@
              <widget class="QLabel" name="labelImmatureText">
               <property name="text">
                <string>Immature:</string>
+              </property>
+              <property name="class" stdset="0">
+               <string>titleLabel</string>
               </property>
              </widget>
             </item>
@@ -278,6 +293,9 @@
               </property>
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+              <property name="class" stdset="0">
+               <string>pacCoinsLabel</string>
               </property>
              </widget>
             </item>
@@ -321,6 +339,9 @@
               <property name="text">
                <string>Available:</string>
               </property>
+              <property name="class" stdset="0">
+               <string>titleLabel</string>
+              </property>
              </widget>
             </item>
             <item row="1" column="1">
@@ -345,6 +366,9 @@
               </property>
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+              <property name="class" stdset="0">
+               <string>pacCoinsLabel</string>
               </property>
              </widget>
             </item>
@@ -378,6 +402,9 @@
               <property name="text">
                <string>Pending:</string>
               </property>
+              <property name="class" stdset="0">
+               <string>titleLabel</string>
+              </property>
              </widget>
             </item>
             <item row="0" column="1">
@@ -405,6 +432,9 @@
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
+         </property>
+         <property name="class" stdset="0">
+          <string>container</string>
          </property>
          <layout class="QVBoxLayout" name="VerticalLayout_PS1">
           <item>
@@ -619,16 +649,28 @@
               <item>
                <widget class="QPushButton" name="privateSendInfo">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>30</height>
+                 </size>
+                </property>
                 <property name="toolTip">
                  <string>Information about PrivateSend and Mixing</string>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">border-image: url(&quot;:/icons/drkblue/info&quot;);</string>
+                </property>
                 <property name="text">
-                 <string>Info</string>
+                 <string/>
+                </property>
+                <property name="class" stdset="0">
+                 <string>QuickButton</string>
                 </property>
                </widget>
               </item>
@@ -657,12 +699,15 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <widget class="QFrame" name="frame_2">
+        <widget class="QFrame" name="frame_RecentTransactions">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
+         </property>
+         <property name="class" stdset="0">
+          <string>container</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
@@ -677,6 +722,9 @@
               </property>
               <property name="text">
                <string>Recent transactions</string>
+              </property>
+              <property name="class" stdset="0">
+               <string>titleLabel</string>
               </property>
              </widget>
             </item>
