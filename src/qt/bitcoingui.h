@@ -135,6 +135,12 @@ private:
     HelpMessageDialog *helpMessageDialog;
     ModalOverlay *modalOverlay;
 
+    QPixmap backgroundImage;
+    QPalette palette;
+
+    /** override events */
+    virtual void resizeEvent(QResizeEvent *event);
+
     /** Keep track of previous number of blocks, to detect progress */
     int prevBlocks;
     int spinnerFrame;

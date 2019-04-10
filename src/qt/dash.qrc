@@ -1,4 +1,4 @@
-<!DOCTYPE RCC><RCC version="1.0">
+<RCC>
     <qresource prefix="/icons">
         <file alias="bitcoin">res/icons/bitcoin.png</file>
         <file alias="prompticon">res/icons/chevron.png</file>
@@ -59,6 +59,8 @@
         <file alias="fontsmaller">res/icons/drkblue/fontsmaller.png</file>
         <file alias="transaction_abandoned">res/icons/drkblue/transaction_abandoned.png</file>
         <file alias="network_disabled">res/icons/drkblue/network_disabled.png</file>
+        <file alias="info">res/icons/drkblue/info.png</file>
+        <file alias="private">res/icons/drkblue/private.png</file>
     </qresource>
     <qresource prefix="/icons/crownium">
         <file alias="address-book">res/icons/crownium/address-book.png</file>

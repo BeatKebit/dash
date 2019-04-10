@@ -266,6 +266,12 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
         connect(progressBar, SIGNAL(clicked(QPoint)), this, SLOT(showModalOverlay()));
     }
 #endif
+
+    // set Background Image of window so it can keep aspect ratio >
+    backgroundImage = QPixmap(":/images/drkblue/drkblue_walletFrame_bg");
+    backgroundImage = backgroundImage.scaled(this->size(), Qt::KeepAspectRatioByExpanding);
+    palette.setBrush(QPalette::Window, backgroundImage);
+    this->setPalette(palette);
 }
 
 BitcoinGUI::~BitcoinGUI()
@@ -493,6 +499,18 @@ void BitcoinGUI::createActions()
     new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_G), this, SLOT(showGraph()));
     new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_P), this, SLOT(showPeers()));
     new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_R), this, SLOT(showRepair()));
+}
+
+// We override the virtual resizeEvent of the QWidget to adjust background image to the new window size
+void BitcoinGUI::resizeEvent(QResizeEvent *event)
+{
+    QWidget::resizeEvent(event);
+
+    // set Background Image of window so it can keep aspect ratio >
+    backgroundImage = QPixmap(":/images/drkblue/drkblue_walletFrame_bg");
+    backgroundImage = backgroundImage.scaled(event->size(), Qt::KeepAspectRatioByExpanding);
+    palette.setBrush(QPalette::Window, backgroundImage);
+    this->setPalette(palette);
 }
 
 void BitcoinGUI::createMenuBar()

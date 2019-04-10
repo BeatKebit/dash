@@ -213,11 +213,13 @@ RES_ICONS = \
   qt/res/icons/drkblue/hd_disabled.png \
   qt/res/icons/drkblue/hd_enabled.png \
   qt/res/icons/drkblue/history.png \
+  qt/res/icons/drkblue/info.png \
   qt/res/icons/drkblue/key.png \
   qt/res/icons/drkblue/lock_closed.png \
   qt/res/icons/drkblue/lock_open.png \
   qt/res/icons/drkblue/masternodes.png \
   qt/res/icons/drkblue/overview.png \
+  qt/res/icons/drkblue/private.png \
   qt/res/icons/drkblue/quit.png \
   qt/res/icons/drkblue/receive.png \
   qt/res/icons/drkblue/remove.png \
@@ -533,6 +535,15 @@ RES_IMAGES = \
   qt/res/images/drkblue/drkblue_rightArrow_small.png \
   qt/res/images/drkblue/drkblue_qtreeview_selected.png \
   qt/res/images/drkblue/drkblue_walletFrame_bg.png \
+  qt/res/images/drkblue/hover_profile.png \
+  qt/res/images/drkblue/profile_bkg.png \
+  qt/res/images/drkblue/header_bkg.png \
+  qt/res/images/drkblue/checked_b.png \
+  qt/res/images/drkblue/unchecked_b.png \
+  qt/res/images/drkblue/checked_b_dis.png \
+  qt/res/images/drkblue/unchecked_b_dis.png \
+  qt/res/images/drkblue/checked_dis.png \
+  qt/res/images/drkblue/unchecked_dis.png \
   qt/res/images/crownium/about.png \
   qt/res/images/crownium/splash.png \
   qt/res/images/crownium/splash_testnet.png \
