@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>576</width>
-    <height>402</height>
+    <height>489</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QTabWidget" name="tabWidget">
+    <widget class="QTabWidget" name="tabWidget_OptionsDialog">
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -239,6 +239,9 @@
            <property name="value">
             <number>4</number>
            </property>
+           <property name="class" stdset="0">
+            <string>SpinBoxSmall</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -280,6 +283,9 @@
            </property>
            <property name="value">
             <number>1000</number>
+           </property>
+           <property name="class" stdset="0">
+            <string>SpinBoxSmall</string>
            </property>
           </widget>
          </item>
@@ -367,6 +373,9 @@
            <property name="toolTip">
             <string>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</string>
            </property>
+           <property name="class" stdset="0">
+            <string>LineEditSmall</string>
+           </property>
           </widget>
          </item>
          <item>
@@ -398,6 +407,9 @@
            </property>
            <property name="toolTip">
             <string>Port of the proxy (e.g. 9050)</string>
+           </property>
+           <property name="class" stdset="0">
+            <string>LineEditSmall</string>
            </property>
           </widget>
          </item>
@@ -554,6 +566,9 @@
            <property name="toolTip">
             <string>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</string>
            </property>
+           <property name="class" stdset="0">
+            <string>LineEditSmall</string>
+           </property>
           </widget>
          </item>
          <item>
@@ -585,6 +600,9 @@
            </property>
            <property name="toolTip">
             <string>Port of the proxy (e.g. 9050)</string>
+           </property>
+           <property name="class" stdset="0">
+            <string>LineEditSmall</string>
            </property>
           </widget>
          </item>
@@ -804,6 +822,9 @@ https://www.transifex.com/projects/p/dash/</string>
           <widget class="QLineEdit" name="thirdPartyTxUrls">
            <property name="toolTip">
             <string>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items.&lt;br/&gt;%s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</string>
+           </property>
+           <property name="class" stdset="0">
+            <string>LineEditSmall</string>
            </property>
           </widget>
          </item>
