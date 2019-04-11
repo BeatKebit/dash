@@ -17,6 +17,7 @@
 #include <QMenu>
 #include <QPoint>
 #include <QPushButton>
+#include <QToolButton>
 #include <QSystemTrayIcon>
 
 class ClientModel;
@@ -135,6 +136,12 @@ private:
     HelpMessageDialog *helpMessageDialog;
     ModalOverlay *modalOverlay;
 
+    QFrame *headerFrame;
+    QPushButton *btnImg;
+    QToolButton *btnRefresh;
+    QToolButton *btnCopyNews;
+    QLabel *messageLabel;
+
     QPixmap backgroundImage;
     QPalette palette;
 
@@ -157,6 +164,10 @@ private:
     void createTrayIcon(const NetworkStyle *networkStyle);
     /** Create system tray menu (or setup the dock menu) */
     void createIconMenu(QMenu *pmenu);
+    /** Create the top header bar where the message and profile picture will be located*/
+    void createHeaderBar();
+    /** Select the image to save for the wallet*/
+    void setProfileImage();
 
     /** Enable or disable all wallet-related actions */
     void setWalletActionsEnabled(bool enabled);
@@ -235,9 +246,16 @@ private Q_SLOTS:
     /** Show Sign/Verify Message dialog and switch to verify message tab */
     void gotoVerifyMessageTab(QString addr = "");
 
+    /** Copy the text of the news */
+    void copyNews();
+    /** Refresh the news and the PAC value */
+    void refreshNewsPacValue();
+
     /** Show open dialog */
     void openClicked();
 #endif // ENABLE_WALLET
+    /** It will open a file picker to choose the image file*/
+    void selectProfileImageFile();
     /** Show configuration dialog */
     void optionsClicked();
     /** Show about dialog */
