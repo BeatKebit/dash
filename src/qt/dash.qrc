@@ -309,6 +309,15 @@
         <file alias="drkblue_walletFrame_bg">res/images/drkblue/drkblue_walletFrame_bg.png</file>
         <file alias="splash">res/images/drkblue/splash.png</file>
         <file alias="splash_testnet">res/images/drkblue/splash_testnet.png</file>
+        <file alias="checked_b">res/images/drkblue/checked_b.png</file>
+        <file alias="checked_b_dis">res/images/drkblue/checked_b_dis.png</file>
+        <file alias="checked_dis">res/images/drkblue/checked_dis.png</file>
+        <file alias="header_bkg">res/images/drkblue/header_bkg.png</file>
+        <file alias="hover_profile">res/images/drkblue/hover_profile.png</file>
+        <file alias="profile_bkg">res/images/drkblue/profile_bkg.png</file>
+        <file alias="unchecked_b">res/images/drkblue/unchecked_b.png</file>
+        <file alias="unchecked_b_dis">res/images/drkblue/unchecked_b_dis.png</file>
+        <file alias="unchecked_dis">res/images/drkblue/unchecked_dis.png</file>
     </qresource>
     <qresource prefix="/images/crownium">
         <file alias="about">res/images/crownium/about.png</file>
