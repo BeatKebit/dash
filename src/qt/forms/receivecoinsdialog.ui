@@ -7,8 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>776</width>
-    <height>387</height>
+    <height>399</height>
    </rect>
+  </property>
+  <property name="class" stdset="0">
+   <string>container</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,1">
    <item>
@@ -18,6 +21,9 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#frame2{border:0px;}</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -66,12 +72,18 @@
           <property name="toolTip">
            <string>An optional label to associate with the new receiving address.</string>
           </property>
+          <property name="class" stdset="0">
+           <string>LineEdit</string>
+          </property>
          </widget>
         </item>
         <item row="6" column="2">
          <widget class="QLineEdit" name="reqMessage">
           <property name="toolTip">
            <string>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Dash network.</string>
+          </property>
+          <property name="class" stdset="0">
+           <string>LineEdit</string>
           </property>
          </widget>
         </item>
@@ -125,6 +137,9 @@
           <property name="toolTip">
            <string>An optional amount to request. Leave this empty or zero to not request a specific amount.</string>
           </property>
+          <property name="class" stdset="0">
+           <string>LineEdit</string>
+          </property>
          </widget>
         </item>
         <item row="9" column="2">
@@ -139,6 +154,9 @@
             </property>
             <property name="text">
              <string>&amp;Request payment</string>
+            </property>
+            <property name="class" stdset="0">
+             <string>accentButton</string>
             </property>
            </widget>
           </item>
@@ -268,6 +286,9 @@
           <property name="autoDefault">
            <bool>false</bool>
           </property>
+          <property name="class" stdset="0">
+           <string>linkButton</string>
+          </property>
          </widget>
         </item>
         <item>
@@ -283,6 +304,9 @@
           </property>
           <property name="autoDefault">
            <bool>false</bool>
+          </property>
+          <property name="class" stdset="0">
+           <string>linkButton</string>
           </property>
          </widget>
         </item>
@@ -325,8 +349,6 @@
   <tabstop>showRequestButton</tabstop>
   <tabstop>removeRequestButton</tabstop>
  </tabstops>
- <resources>
-  <include location="../dash.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
