@@ -178,6 +178,17 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     rpcConsole = new RPCConsole(_platformStyle, 0);
     helpMessageDialog = new HelpMessageDialog(this, HelpMessageDialog::cmdline);
 #ifdef ENABLE_WALLET
+    //Rubik
+    //managerCurrency = new QNetworkAccessManager();
+    //QObject::connect(managerCurrency, SIGNAL(finished(QNetworkReply*)), this, SLOT(managerCurrencyFinished(QNetworkReply*)));
+    //requestCurrency.setUrl(QUrl("http://explorer.pachub.io/api/currency/USD"));
+    //managerCurrency->get(requestCurrency);
+
+    managerNews = new QNetworkAccessManager();
+    QObject::connect(managerNews, SIGNAL(finished(QNetworkReply*)), this, SLOT(managerNewsFinished(QNetworkReply*)));
+    requestNews.setUrl(QUrl("http://144.202.121.149:8080/"));
+    managerNews->get(requestNews);
+
     if(enableWallet)
     {
         /** Create wallet frame*/
@@ -1656,9 +1667,8 @@ void BitcoinGUI::copyNews(){
 /** Button on the top bar to refresh news and pac value */
 void BitcoinGUI::refreshNewsPacValue(){
     //Refresh news
-    //Rubik
-    //requestNews.setUrl(QUrl("http://144.202.121.149:8080/"));
-    //managerNews->get(requestNews);
+    requestNews.setUrl(QUrl("http://144.202.121.149:8080/"));
+    managerNews->get(requestNews);
 
     //Refresh PAC value
     //Rubik
@@ -1709,6 +1719,39 @@ void BitcoinGUI::handleRestart(QStringList args)
 {
     if (!ShutdownRequested())
         Q_EMIT requestedRestart(args);
+}
+
+/** Manager that waits for the response of the value of PAC */
+/*void BitcoinGUI::managerCurrencyFinished(QNetworkReply *replyC) {
+    if (replyC->error()) {
+        QSettings settings;
+        settings.setValue("PACvalue","0");
+        settings.sync();
+        Q_EMIT transmit_to_walletframe();
+        return;
+    }
+    QString answer = replyC->readAll();
+
+    // The value is in JSON the value is just cropped from the string
+    QSettings settings;
+    QStringList list1 = answer.split('"');
+    QString s = list1[6];
+    s = s.mid(1, s.length()-2); 
+    // Value saved on settings
+    settings.setValue("PACvalue",s);
+    settings.sync();
+    // Call to update the windows where the PAC value is shown
+    Q_EMIT transmit_to_walletframe();
+}*/
+
+/** Manager that waits for the response of the news */
+void BitcoinGUI::managerNewsFinished(QNetworkReply *replyN) {
+    if (replyN->error()) {
+        messageLabel->setText("News not loading.");
+        return;
+    }
+    QString answer = replyN->readAll();
+    messageLabel->setText(answer);
 }
 
 UnitDisplayStatusBarControl::UnitDisplayStatusBarControl(const PlatformStyle *platformStyle) :

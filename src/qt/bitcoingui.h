@@ -19,6 +19,11 @@
 #include <QPushButton>
 #include <QToolButton>
 #include <QSystemTrayIcon>
+//Rubik
+//#include <boost/filesystem/path.hpp>
+#include <QNetworkRequest>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 
 class ClientModel;
 class NetworkStyle;
@@ -142,6 +147,11 @@ private:
     QToolButton *btnCopyNews;
     QLabel *messageLabel;
 
+    QNetworkAccessManager *managerCurrency;
+    QNetworkRequest requestCurrency;
+    QNetworkAccessManager *managerNews;
+    QNetworkRequest requestNews;
+
     QPixmap backgroundImage;
     QPalette palette;
 
@@ -246,6 +256,11 @@ private Q_SLOTS:
     /** Show Sign/Verify Message dialog and switch to verify message tab */
     void gotoVerifyMessageTab(QString addr = "");
 
+    /** API PAC_USD request */
+    //Rubik
+    //void managerCurrencyFinished(QNetworkReply *replyC);
+    /** API News request */
+    void managerNewsFinished(QNetworkReply *replyN);
     /** Copy the text of the news */
     void copyNews();
     /** Refresh the news and the PAC value */
