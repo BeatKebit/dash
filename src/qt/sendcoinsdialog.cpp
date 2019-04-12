@@ -31,6 +31,7 @@
 #include <QSettings>
 #include <QTextDocument>
 #include <QTimer>
+#include <QPropertyAnimation>
 
 #define SEND_CONFIRM_DELAY   3
 
@@ -667,6 +668,7 @@ void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn 
 
 void SendCoinsDialog::minimizeFeeSection(bool fMinimize)
 {
+    (fMinimize) ? (ui->toolBox->setCurrentIndex(0)) : (ui->toolBox->setCurrentIndex(1));
     ui->labelFeeMinimized->setVisible(fMinimize);
     ui->buttonChooseFee  ->setVisible(fMinimize);
     ui->buttonMinimizeFee->setVisible(!fMinimize);
