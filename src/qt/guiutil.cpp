@@ -17,6 +17,7 @@
 #include "script/script.h"
 #include "script/standard.h"
 #include "util.h"
+#include "guiconstants.h"
 
 #ifdef WIN32
 #ifdef _WIN32_WINNT
@@ -918,6 +919,25 @@ void restoreWindowGeometry(const QString& strSetting, const QSize& defaultSize, 
         parent->move(defaultPos);
     }
 }
+// Return name of current UI-theme or default theme if no theme was found
+QString getFontName()
+{
+    QSettings settings;
+    QString FontType = settings.value("FontType", "").toString();
+
+    if(!FontType.isEmpty()){
+        return FontType;
+    }
+    return QString("Volte Rounded");
+}
+QFont getCustomSelectedFont()
+{
+    QString fontType = getFontName();
+    std::cout << "font name: " << fontType.toStdString() << std::endl;
+    QFont font = QFont(fontType,14, QFont::Normal, false);
+    font.setPixelSize(14);
+    return font;
+}
 
 // Return name of current UI-theme or default theme if no theme was found
 QString getThemeName()
@@ -929,6 +949,13 @@ QString getThemeName()
         return theme;
     }
     return QString("light");  
+}
+void setGUITextColor(){
+    QString theme = getThemeName();
+    if( theme.toStdString().compare("pac") == 0 )
+        COLOR_TEXT = QColor(255,255,255);
+    else
+        COLOR_TEXT = QColor(20,20,20);
 }
 
 // Open CSS when configured

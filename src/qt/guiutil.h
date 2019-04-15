@@ -194,12 +194,19 @@ namespace GUIUtil
     /** Restore window size and position */
     void restoreWindowGeometry(const QString& strSetting, const QSize &defaultSizeIn, QWidget *parent);
 
+    /** Returns the current color for the body text according to the theme*/
+    void setGUITextColor();
+
     /** Load global CSS theme */
     QString loadStyleSheet();
 
     /** Return name of current CSS theme */
     QString getThemeName();
-    
+
+    /** returns the QFont previously selected by the user in settings */
+    QFont getCustomSelectedFont();
+    QString getFontName();
+
     /* Convert QString to OS specific boost path through UTF-8 */
     boost::filesystem::path qstringToBoostPath(const QString &path);
 

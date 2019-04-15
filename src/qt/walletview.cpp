@@ -77,6 +77,11 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     usedSendingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
     usedReceivingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::ReceivingTab, this);
 
+    overviewPage->setContentsMargins(30,0,30,10);
+    transactionsPage->setContentsMargins(30,0,30,10);
+    receiveCoinsPage->setContentsMargins(30,0,30,10);
+    sendCoinsPage->setContentsMargins(30,0,30,10);
+
     addWidget(overviewPage);
     addWidget(transactionsPage);
     addWidget(receiveCoinsPage);
@@ -160,6 +165,9 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     sendCoinsPage->setModel(_walletModel);
     usedReceivingAddressesPage->setModel(_walletModel->getAddressTableModel());
     usedSendingAddressesPage->setModel(_walletModel->getAddressTableModel());
+
+
+
 
     if (_walletModel)
     {

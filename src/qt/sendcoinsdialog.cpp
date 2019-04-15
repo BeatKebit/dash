@@ -675,6 +675,11 @@ void SendCoinsDialog::minimizeFeeSection(bool fMinimize)
     ui->frameFeeSelection->setVisible(!fMinimize);
     ui->horizontalLayoutSmartFee->setContentsMargins(0, (fMinimize ? 0 : 6), 0, 0);
     fFeeMinimized = fMinimize;
+    /*QPropertyAnimation *animation = new QPropertyAnimation(ui->toolBox, "currentIndex");
+    animation->setDuration(2500);
+    animation->setStartValue(0);
+    animation->setEndValue(1);
+    animation->start();*/
 }
 
 void SendCoinsDialog::on_buttonChooseFee_clicked()
@@ -968,13 +973,13 @@ void SendCoinsDialog::coinControlUpdateLabels()
 
         // show coin control stats
         ui->labelCoinControlAutomaticallySelected->hide();
-        ui->widgetCoinControl->show();
+        ui->scrollAreaCoinControl->show();
     }
     else
     {
         // hide coin control stats
         ui->labelCoinControlAutomaticallySelected->show();
-        ui->widgetCoinControl->hide();
+        ui->scrollAreaCoinControl->hide();
         ui->labelCoinControlInsuffFunds->hide();
     }
 }
