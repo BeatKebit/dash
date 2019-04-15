@@ -47,78 +47,77 @@
     <property name="verticalSpacing">
      <number>8</number>
     </property>
-    <item row="2" column="0">
-     <layout class="QHBoxLayout" name="labelAmounTitles">
+    <item row="8" column="0">
+     <widget class="QLabel" name="messageTextLabel">
+      <property name="toolTip">
+       <string>A message that was attached to the paccoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Paccoin network.</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayoutAmount" stretch="1">
       <item>
-       <widget class="QLabel" name="labellLabel">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+       <widget class="QCheckBox" name="checkboxSubtractFeeFromAmount">
+        <property name="toolTip">
+         <string>The fee will be deducted from the amount being sent. The recipient will receive a lower amount of Paccoin than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">margin: 5px 0 0 0;</string>
         </property>
         <property name="text">
-         <string>&amp;Label:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="buddy">
-         <cstring>addAsLabel</cstring>
-        </property>
-        <property name="class" stdset="0">
-         <string>titleLabel</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="amountLabel">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>300</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>A&amp;mount:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="buddy">
-         <cstring>payAmount</cstring>
-        </property>
-        <property name="class" stdset="0">
-         <string>titleLabel</string>
+         <string>S&amp;ubtract fee from amount</string>
         </property>
        </widget>
       </item>
      </layout>
     </item>
-    <item row="1" column="0">
-     <layout class="QHBoxLayout" name="payToLayout">
-      <property name="spacing">
-       <number>0</number>
-      </property>
+    <item row="4" column="0">
+     <layout class="QHBoxLayout" name="inputsContainer">
       <item>
-       <widget class="QValidatedLineEdit" name="payTo">
+       <widget class="QLineEdit" name="addAsLabel">
         <property name="toolTip">
-         <string>The Paccoin address to send the payment to</string>
+         <string>Enter a label for this address to add it to the list of used addresses</string>
         </property>
         <property name="class" stdset="0">
          <string>LineEdit</string>
         </property>
        </widget>
       </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Preferred</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>25</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="BitcoinAmountField" name="payAmount">
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="class" stdset="0">
+         <string>LineEdit_PacCoins</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
-    <item row="0" column="0">
+    <item row="1" column="0">
      <layout class="QHBoxLayout" name="PayToHeader">
       <item>
        <spacer name="horizontalSpacer">
@@ -217,7 +216,7 @@
       </item>
      </layout>
     </item>
-    <item row="6" column="0">
+    <item row="7" column="0">
      <widget class="QLabel" name="messageLabel">
       <property name="text">
        <string>Message:</string>
@@ -231,74 +230,91 @@
      </widget>
     </item>
     <item row="3" column="0">
-     <layout class="QHBoxLayout" name="inputsContainer">
+     <layout class="QHBoxLayout" name="labelAmounTitles">
       <item>
-       <widget class="QLineEdit" name="addAsLabel">
-        <property name="toolTip">
-         <string>Enter a label for this address to add it to the list of used addresses</string>
+       <widget class="QLabel" name="labellLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>&amp;Label:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="buddy">
+         <cstring>addAsLabel</cstring>
         </property>
         <property name="class" stdset="0">
-         <string>LineEdit</string>
+         <string>titleLabel</string>
         </property>
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+       <widget class="QLabel" name="amountLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Preferred</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>25</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="BitcoinAmountField" name="payAmount">
         <property name="maximumSize">
          <size>
           <width>300</width>
           <height>16777215</height>
          </size>
         </property>
-        <property name="class" stdset="0">
-         <string>LineEdit_PacCoins</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="7" column="0">
-     <widget class="QLabel" name="messageTextLabel">
-      <property name="toolTip">
-       <string>A message that was attached to the paccoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Paccoin network.</string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::PlainText</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayoutAmount" stretch="1">
-      <item>
-       <widget class="QCheckBox" name="checkboxSubtractFeeFromAmount">
-        <property name="toolTip">
-         <string>The fee will be deducted from the amount being sent. The recipient will receive a lower amount of Paccoin than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">margin: 5px 0 0 0;</string>
-        </property>
         <property name="text">
-         <string>S&amp;ubtract fee from amount</string>
+         <string>A&amp;mount:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="buddy">
+         <cstring>payAmount</cstring>
+        </property>
+        <property name="class" stdset="0">
+         <string>titleLabel</string>
         </property>
        </widget>
       </item>
      </layout>
+    </item>
+    <item row="2" column="0">
+     <layout class="QHBoxLayout" name="payToLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QValidatedLineEdit" name="payTo">
+        <property name="toolTip">
+         <string>The Paccoin address to send the payment to</string>
+        </property>
+        <property name="class" stdset="0">
+         <string>LineEdit</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="0">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>15</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>
@@ -1332,15 +1348,15 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>QValidatedLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>qvalidatedlineedit.h</header>
+  </customwidget>
+  <customwidget>
    <class>BitcoinAmountField</class>
    <extends>QLineEdit</extends>
    <header>bitcoinamountfield.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>QValidatedLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>qvalidatedlineedit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

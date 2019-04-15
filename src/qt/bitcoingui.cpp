@@ -68,9 +68,9 @@
 #include <QPushButton>
 //Rubik
 //#include <QRegion>
-//#include <QFontDatabase>
+#include <QFontDatabase>
 //#include <QSpacerItem>
-//#include <QFont>
+#include <QFont>
 //#include <QProxyStyle>
 //#include <QTreeWidget>
 
@@ -143,6 +143,17 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     spinnerFrame(0),
     platformStyle(_platformStyle)
 {
+    /* Add the custom Fonts to the wallet */
+    QFontDatabase::addApplicationFont(":/fonts/VolteRounded-Medium");
+    QFontDatabase::addApplicationFont(":/fonts/Gotham-Bold");
+    QFontDatabase::addApplicationFont(":/fonts/Gotham-Medium");
+
+    /* Setting the default Pac Theme */
+    //QSettings settings;
+    //settings.setValue("theme", "");
+    QString currentFont = GUIUtil::getFontName();
+    std::cout << "CurrentFont: " << currentFont.toStdString() << std::endl;
+
     /* Open CSS when configured */
     this->setStyleSheet(GUIUtil::loadStyleSheet());
 
