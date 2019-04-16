@@ -14,6 +14,7 @@
 #include "receiverequestdialog.h"
 #include "recentrequeststablemodel.h"
 #include "walletmodel.h"
+#include "guiconstants.h"
 
 #include <QAction>
 #include <QCursor>
@@ -21,6 +22,33 @@
 #include <QMessageBox>
 #include <QScrollBar>
 #include <QTextDocument>
+
+#include <QClipboard>
+#include <QDrag>
+#include <QMenu>
+#include <QMimeData>
+#include <QMouseEvent>
+#include <QPixmap>
+#include <QDebug>
+#include <QPainter>
+#include <QToolTip>
+#include <QGraphicsOpacityEffect>
+#include <iostream>
+#include <QSettings>
+
+#include <QPropertyAnimation>
+#if QT_VERSION < 0x050000
+#include <QUrl>
+#endif
+
+#if defined(HAVE_CONFIG_H)
+#include "config/dash-config.h" /* for USE_QRCODE */
+#endif
+
+#ifdef USE_QRCODE
+#include <qrencode.h>
+#endif
+
 
 ReceiveCoinsDialog::ReceiveCoinsDialog(const PlatformStyle *_platformStyle, QWidget *parent) :
     QDialog(parent),
@@ -31,7 +59,23 @@ ReceiveCoinsDialog::ReceiveCoinsDialog(const PlatformStyle *_platformStyle, QWid
 {
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
-    
+    //Initializing the qrcodelabel size:
+    QRCodeLabelSize = 160;
+    wasQRCodeGeneratedAlready = false;
+
+    //hidding address and copy button from ui
+    ui->lineEditCurrentAddress->hide();
+    ui->btnCopyLastAddress->hide();
+
+    lblQRCode = new QRImageWidget;
+    lblQRCode->setAlignment(Qt::AlignCenter);
+    lblQRCode->setContentsMargins(0,0,0,0);
+    lblQRCode->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+
+    ui->qrLayoutContainer->setAlignment(Qt::AlignCenter);
+    ui->qrLayoutContainer->setContentsMargins(0,0,0,0);
+    ui->qrLayoutContainer->addWidget(lblQRCode);
+
     if (!_platformStyle->getImagesOnButtons()) {
         ui->clearButton->setIcon(QIcon());
         ui->receiveButton->setIcon(QIcon());
@@ -43,6 +87,7 @@ ReceiveCoinsDialog::ReceiveCoinsDialog(const PlatformStyle *_platformStyle, QWid
         ui->showRequestButton->setIcon(QIcon(":/icons/" + theme + "/edit"));
         ui->removeRequestButton->setIcon(QIcon(":/icons/" + theme + "/remove"));
     }
+    ui->iconLabelAvailableBalance->setPixmap(QPixmap(":icons/bitcoin-32"));
 
     // context menu actions
     QAction *copyURIAction = new QAction(tr("Copy URI"), this);
@@ -64,7 +109,15 @@ ReceiveCoinsDialog::ReceiveCoinsDialog(const PlatformStyle *_platformStyle, QWid
     connect(copyMessageAction, SIGNAL(triggered()), this, SLOT(copyMessage()));
     connect(copyAmountAction, SIGNAL(triggered()), this, SLOT(copyAmount()));
 
+    connect(ui->btnCopyLastAddress,  SIGNAL(clicked()), this, SLOT(copyAddress()));
+
     connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
+}
+void ReceiveCoinsDialog::copyAddress(){
+    QClipboard *clip = QApplication::clipboard();
+    QString input = ui->lineEditCurrentAddress->text();
+    clip->setText(input);
+    QToolTip::showText(ui->btnCopyLastAddress->mapToGlobal(QPoint(10,10)), "Copied Address to Clipboard!",ui->btnCopyLastAddress);
 }
 
 void ReceiveCoinsDialog::setModel(WalletModel *_model)
@@ -102,6 +155,49 @@ ReceiveCoinsDialog::~ReceiveCoinsDialog()
     delete ui;
 }
 
+void ReceiveCoinsDialog::generateRequestCoins()
+{
+    if(!model || !model->getOptionsModel() || !model->getAddressTableModel() || !model->getRecentRequestsTableModel())
+        return;
+    QString address;
+    QString label = ui->reqLabel->text();
+    if(ui->reuseAddress->isChecked())
+    {
+        /* Choose existing receiving address */
+        AddressBookPage dlg(platformStyle, AddressBookPage::ForSelection, AddressBookPage::ReceivingTab, this);
+        dlg.setModel(model->getAddressTableModel());
+        if(dlg.exec())
+        {
+            address = dlg.getReturnValue();
+            if(label.isEmpty()) /* If no label provided, use the previously used label */
+            {
+                label = model->getAddressTableModel()->labelForAddress(address);
+            }
+        } else {
+            return;
+        }
+    } else {
+        /* Generate new receiving address */
+        address = model->getAddressTableModel()->addRow(AddressTableModel::Receive, label, "");
+    }
+    SendCoinsRecipient info(address, label, ui->reqAmount->value(), ui->reqMessage->text());
+    info.fUseInstantSend = ui->checkUseInstantSend->isChecked();
+    clear();
+    /* Store request for later reference */
+    model->getRecentRequestsTableModel()->addNewRequest(info);
+    uri = GUIUtil::formatBitcoinURI(info);
+
+    ui->lineEditCurrentAddress->setText(info.address);
+    ui->lineEditCurrentAddress->show();
+    ui->btnCopyLastAddress->show();
+
+#ifdef USE_QRCODE
+    QSettings settings;
+    int height = settings.value("WindowHeight").toInt();
+    createQRCodeImage(height);
+#endif
+}
+
 void ReceiveCoinsDialog::clear()
 {
     ui->reqAmount->clear();
@@ -131,42 +227,31 @@ void ReceiveCoinsDialog::updateDisplayUnit()
 
 void ReceiveCoinsDialog::on_receiveButton_clicked()
 {
-    if(!model || !model->getOptionsModel() || !model->getAddressTableModel() || !model->getRecentRequestsTableModel())
-        return;
+    generateRequestCoins();
 
-    QString address;
-    QString label = ui->reqLabel->text();
-    if(ui->reuseAddress->isChecked())
-    {
-        /* Choose existing receiving address */
-        AddressBookPage dlg(platformStyle, AddressBookPage::ForSelection, AddressBookPage::ReceivingTab, this);
-        dlg.setModel(model->getAddressTableModel());
-        if(dlg.exec())
-        {
-            address = dlg.getReturnValue();
-            if(label.isEmpty()) /* If no label provided, use the previously used label */
-            {
-                label = model->getAddressTableModel()->labelForAddress(address);
-            }
-        } else {
-            return;
-        }
-    } else {
-        /* Generate new receiving address */
-        address = model->getAddressTableModel()->addRow(AddressTableModel::Receive, label, "");
-    }
-    SendCoinsRecipient info(address, label,
-        ui->reqAmount->value(), ui->reqMessage->text());
-    info.fUseInstantSend = ui->checkUseInstantSend->isChecked();
-    ReceiveRequestDialog *dialog = new ReceiveRequestDialog(this);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->setModel(model->getOptionsModel());
-    dialog->setInfo(info);
-    dialog->show();
-    clear();
+    // animation added in order to make the user noticing the qrcode and address changing  (UX element)
+    QGraphicsOpacityEffect *eff1 = new QGraphicsOpacityEffect(this);
+    QGraphicsOpacityEffect *eff2 = new QGraphicsOpacityEffect(this);
 
-    /* Store request for later reference */
-    model->getRecentRequestsTableModel()->addNewRequest(info);
+    lblQRCode->setGraphicsEffect(eff1);
+    ui->lineEditCurrentAddress->setGraphicsEffect(eff2);
+
+    QPropertyAnimation *a1 = new QPropertyAnimation(eff1,"opacity");
+    QPropertyAnimation *a2 = new QPropertyAnimation(eff2,"opacity");
+    a1->setDuration(250);
+    a1->setStartValue(0);
+    a1->setEndValue(1);
+    a1->setEasingCurve(QEasingCurve::InBack);
+
+    a2->setDuration(250);
+    a2->setStartValue(0);
+    a2->setEndValue(1);
+    a2->setEasingCurve(QEasingCurve::InBack);
+
+    a1->start(QPropertyAnimation::DeleteWhenStopped);
+    a2->start(QPropertyAnimation::DeleteWhenStopped);
+    ui->recentRequestsView->selectRow(0);
+
 }
 
 void ReceiveCoinsDialog::on_recentRequestsView_doubleClicked(const QModelIndex &index)
@@ -210,12 +295,86 @@ void ReceiveCoinsDialog::on_removeRequestButton_clicked()
     model->getRecentRequestsTableModel()->removeRows(firstIndex.row(), selection.length(), firstIndex.parent());
 }
 
+
+void ReceiveCoinsDialog::createQRCodeImage(int height)
+{
+    lblQRCode->setText("");
+    if(!uri.isEmpty())
+    {
+        // limit URI length
+        if (uri.length() > MAX_URI_LENGTH)
+        {
+            lblQRCode->setText(tr("Resulting URI too long, try to reduce the text for label / message."));
+        }
+        else {
+            QRcode *code = QRcode_encodeString(uri.toUtf8().constData(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+            if (!code)
+            {
+                lblQRCode->setText(tr("Error encoding URI into QR Code."));
+                return;
+            }
+            QImage myImage = QImage(code->width + 8, code->width + 8, QImage::Format_RGB32);
+            myImage.fill(0xffffff);
+            unsigned char *p = code->data;
+            for (int y = 0; y < code->width; y++)
+            {
+                for (int x = 0; x < code->width; x++)
+                {
+                    myImage.setPixel(x + 4, y + 4, ((*p & 1) ? 0x0 : 0xffffff));
+                    p++;
+                }
+            }
+            // Small QRCode
+            if(height < 500)
+            {
+                QRCodeLabelSize = 100;
+            }
+            // Medium QRCode
+            else if(height > 520 && height < 800)
+            {
+                QRCodeLabelSize = 160;
+            }
+            // Big QRCode
+            else if(height > 800)
+            {
+                QRCodeLabelSize = 240;
+            }
+
+            QRcode_free(code);
+            int QRCodeSize = QRCodeLabelSize - 20;
+
+            QPixmap target(QRCodeLabelSize, QRCodeLabelSize);
+            target.fill(Qt::transparent);
+
+            QPixmap pixmap = QPixmap::fromImage(myImage).scaled(QRCodeSize, QRCodeSize,Qt::KeepAspectRatioByExpanding);
+            QPainter painter(&target);
+            painter.setRenderHint(QPainter::Antialiasing, true);
+
+            QPainterPath painterPath;
+            painterPath.addEllipse(QRect(0,0,QRCodeLabelSize,QRCodeLabelSize));
+
+            painter.setClipPath(painterPath);
+            painter.fillPath(painterPath, Qt::white);
+            painter.drawPixmap(10,10,pixmap);
+            lblQRCode->setPixmap(target);
+            wasQRCodeGeneratedAlready = true;
+        }
+    }
+}
+
 // We override the virtual resizeEvent of the QWidget to adjust tables column
 // sizes as the tables width is proportional to the dialogs width.
 void ReceiveCoinsDialog::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
     columnResizingFixer->stretchColumnWidth(RecentRequestsTableModel::Message);
+    QSettings settings;
+    settings.setValue("WindowHeight",event->size().height());
+    // It will only resize after the first creation of the qrcode.
+    if(wasQRCodeGeneratedAlready)
+    {
+        createQRCodeImage(event->size().height());
+    }
 }
 
 void ReceiveCoinsDialog::keyPressEvent(QKeyEvent *event)
@@ -294,4 +453,27 @@ void ReceiveCoinsDialog::copyMessage()
 void ReceiveCoinsDialog::copyAmount()
 {
     copyColumnToClipboard(RecentRequestsTableModel::Amount);
+}
+
+void ReceiveCoinsDialog::setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance,
+                                 const CAmount& watchBalance, const CAmount& watchUnconfirmedBalance, const CAmount& watchImmatureBalance)
+{
+    currentBalance = balance;
+    Q_UNUSED(unconfirmedBalance);
+    Q_UNUSED(immatureBalance);
+    Q_UNUSED(anonymizedBalance);
+    Q_UNUSED(watchBalance);
+    Q_UNUSED(watchUnconfirmedBalance);
+    Q_UNUSED(watchImmatureBalance);
+
+    // Sets the value of PACs
+    ui->labelBalance->setText(BitcoinUnits::floorHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), balance, false, BitcoinUnits::separatorAlways));
+    // Sets the value in USD
+    ui->labelAvailableUSD->setText("$ " + BitcoinUnits::pacToUsd(balance) + " USD");
+}
+
+/** Receive the signal to update the USD value when the USD-PAC value is updated */
+void ReceiveCoinsDialog::receive_from_walletview()
+{
+    ui->labelAvailableUSD->setText("$ " + BitcoinUnits::pacToUsd(currentBalance) + " USD");
 }
