@@ -308,6 +308,8 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     backgroundImage = backgroundImage.scaled(this->size(), Qt::KeepAspectRatioByExpanding);
     palette.setBrush(QPalette::Window, backgroundImage);
     this->setPalette(palette);
+
+    resize(QDesktopWidget().availableGeometry(this).size() * 0.75);
 }
 
 BitcoinGUI::~BitcoinGUI()

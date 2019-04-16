@@ -57,9 +57,14 @@ SendCoinsDialog::SendCoinsDialog(const PlatformStyle *_platformStyle, QWidget *p
         ui->sendButton->setIcon(QIcon(":/icons/" + theme + "/send"));
     }
 
-    GUIUtil::setupAddressWidget(ui->lineEditCoinControlChange, this);
+    ui->iconLabelConvertedCurrency->setPixmap(QPixmap(":icons/bitcoin-32"));
+    ui->iconLabelAvailableBalance->setPixmap(QPixmap(":icons/bitcoin-32"));
 
+    GUIUtil::setupAddressWidget(ui->lineEditCoinControlChange, this);
     addEntry();
+
+    //ui->advanced_page->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+
 
     connect(ui->addButton, SIGNAL(clicked()), this, SLOT(addEntry()));
     connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
