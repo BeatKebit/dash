@@ -49,7 +49,8 @@ QT_FORMS_UI = \
   qt/forms/sendcoinsdialog.ui \
   qt/forms/sendcoinsentry.ui \
   qt/forms/signverifymessagedialog.ui \
-  qt/forms/transactiondescdialog.ui
+  qt/forms/transactiondescdialog.ui \
+  qt/forms/privatepage.ui
 
 QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
@@ -71,6 +72,7 @@ QT_MOC_CPP = \
   qt/moc_macnotificationhandler.cpp \
   qt/moc_modaloverlay.cpp \
   qt/moc_masternodelist.cpp \
+  qt/moc_privatepage.cpp \
   qt/moc_notificator.cpp \
   qt/moc_openuridialog.cpp \
   qt/moc_optionsdialog.cpp \
@@ -148,6 +150,7 @@ BITCOIN_QT_H = \
   qt/optionsmodel.h \
   qt/overviewpage.h \
   qt/paymentrequestplus.h \
+  qt/privatepage.h \
   qt/paymentserver.h \
   qt/peertablemodel.h \
   qt/platformstyle.h \
@@ -499,6 +502,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/receivecoinsdialog.cpp \
   qt/receiverequestdialog.cpp \
   qt/recentrequeststablemodel.cpp \
+  qt/privatepage.cpp \
   qt/sendcoinsdialog.cpp \
   qt/sendcoinsentry.cpp \
   qt/signverifymessagedialog.cpp \
