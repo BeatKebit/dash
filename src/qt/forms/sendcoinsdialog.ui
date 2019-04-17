@@ -147,8 +147,8 @@ QToolBox::tab::title {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>565</width>
-             <height>567</height>
+             <width>509</width>
+             <height>538</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1025,8 +1025,8 @@ QToolBox::tab::title {
                     <property name="geometry">
                      <rect>
                       <x>0</x>
-                      <y>-84</y>
-                      <width>511</width>
+                      <y>0</y>
+                      <width>515</width>
                       <height>150</height>
                      </rect>
                     </property>

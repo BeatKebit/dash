@@ -37,6 +37,8 @@ namespace GUIUtil
     // Create human-readable string from date
     QString dateTimeStr(const QDateTime &datetime);
     QString dateTimeStr(qint64 nTime);
+    QString timeStr(const QDateTime &datetime);
+    QString dateStr(const QDateTime &datetime);
 
     // Return a monospace font
     QFont fixedPitchFont();
