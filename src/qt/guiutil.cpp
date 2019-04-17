@@ -89,7 +89,14 @@ QString dateTimeStr(const QDateTime &date)
 {
     return date.date().toString(Qt::SystemLocaleShortDate) + QString(" ") + date.toString("hh:mm");
 }
-
+QString timeStr(const QDateTime &date)
+{
+    return date.toString("hh:mm");
+}
+QString dateStr(const QDateTime &date)
+{
+    return date.date().toString(Qt::SystemLocaleShortDate);
+}
 QString dateTimeStr(qint64 nTime)
 {
     return dateTimeStr(QDateTime::fromTime_t((qint32)nTime));
@@ -131,7 +138,9 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 {
     parent->setFocusProxy(widget);
 
-    widget->setFont(fixedPitchFont());
+    QString fontType = GUIUtil::getFontName();
+    widget->setFont(QFont(fontType,14, QFont::Medium, false));
+    //widget->setFont(fixedPitchFont());
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
