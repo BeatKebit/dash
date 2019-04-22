@@ -144,13 +144,12 @@ Q_SIGNALS:
     void incomingTransaction(const QString& date, int unit, const CAmount& amount, const QString& type, const QString& address, const QString& label);
     /** Notify that the out of sync warning icon has been pressed */
     void outOfSyncWarningClicked();
-    //Rubik
     /** Refresh the value on the overview */
-    //void transmit_to_overview();
+    void transmit_to_overview();
     /** Refresh the value on the sendview */
     void transmit_to_sendview();
     /** Refresh the value on the receiveview */
-    //void transmit_to_receiveview();
+    void transmit_to_receiveview();
 };
 
 #endif // BITCOIN_QT_WALLETVIEW_H
