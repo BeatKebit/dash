@@ -62,10 +62,6 @@ public:
         font = QFont(fontType,13,QFont::Medium, false);
         font.setBold(false);
 
-        QList<QWidget*> widgets = this->findChildren<QWidget*>();
-        for (int i = 0; i < widgets.length(); i++){
-            widgets.at(i)->setFont(font);
-        }
         QFont defaultFont = painter->font();
         painter->setFont(font);
 

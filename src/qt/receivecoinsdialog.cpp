@@ -59,6 +59,7 @@ ReceiveCoinsDialog::ReceiveCoinsDialog(const PlatformStyle *_platformStyle, QWid
 {
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
+
     //Initializing the qrcodelabel size:
     QRCodeLabelSize = 160;
     wasQRCodeGeneratedAlready = false;
