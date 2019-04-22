@@ -1714,9 +1714,8 @@ void BitcoinGUI::refreshNewsPacValue(){
     managerNews->get(requestNews);
 
     //Refresh PAC value
-    //Rubik
-    //requestCurrency.setUrl(QUrl("http://explorer.pachub.io/api/currency/USD"));
-    //managerCurrency->get(requestCurrency);
+    requestCurrency.setUrl(QUrl("http://explorer.pachub.io/api/currency/USD"));
+    managerCurrency->get(requestCurrency);
 }
 
 static bool ThreadSafeMessageBox(BitcoinGUI *gui, const std::string& message, const std::string& caption, unsigned int style)
