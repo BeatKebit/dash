@@ -26,7 +26,7 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_LeftPanel">
         <item>
-         <widget class="QToolBox" name="toolBox">
+         <widget class="QTabWidget" name="toolBox">
           <property name="enabled">
            <bool>true</bool>
           </property>
@@ -37,55 +37,22 @@
            </sizepolicy>
           </property>
           <property name="styleSheet">
-           <string notr="true">QToolBox {	 		
-       margin-right: 10px;	 		
-       margin-left: 10px;	 		
-       margin-top: 10px;	 		
-       margin-bottom: 10px;	 		
-       background-color: transparent;	 		
-       font-weight: bold;	 		
-	border: 0px;
-}	 		
-QToolBox &gt; QScrollArea &gt; #qt_scrollarea_viewport &gt; QWidget {
-	background: transparent;
-}
-QToolBox &gt; QWidget {	 		
-       background-color: transparent;	
-}	 		
- 		
-QToolBox::tab {	 		
-       padding-left: 10px;	 		
-       background-color: rgba(200,200,200,0.4);	
-}	 		
- 		
-QToolBox::tab:first, QToolBox::tab:last {	 		
-       border-top-left-radius: 0px;	 		
-       border-top-right-radius: 0px;	 		
-}	 				
-QToolBox::tab:selected {	 		
-       border-bottom-left-radius: 0px;	 		
-       border-bottom-right-radius: 0px;	 		
-}	 		
-QToolBox::tab::title {	 		
-       image: none;	 		
-       subcontrol-position: top left;	 		
-       subcontrol-origin: margin;	 		
-       color: rgb(255, 255, 255);
-}	</string>
+           <string notr="true"/>
+          </property>
+          <property name="tabPosition">
+           <enum>QTabWidget::North</enum>
+          </property>
+          <property name="tabShape">
+           <enum>QTabWidget::Rounded</enum>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
-          <widget class="QWidget" name="coins_page">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>555</width>
-             <height>567</height>
-            </rect>
-           </property>
-           <attribute name="label">
+          <property name="usesScrollButtons">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="tabWidgetPage1">
+           <attribute name="title">
             <string>Recipients</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -99,8 +66,8 @@ QToolBox::tab::title {
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>529</width>
-                 <height>541</height>
+                 <width>567</width>
+                 <height>614</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
@@ -142,16 +109,8 @@ QToolBox::tab::title {
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="advanced_page">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>509</width>
-             <height>538</height>
-            </rect>
-           </property>
-           <attribute name="label">
+          <widget class="QWidget" name="tabWidgetPage2">
+           <attribute name="title">
             <string>Advanced Settings</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -1026,8 +985,8 @@ QToolBox::tab::title {
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>515</width>
-                      <height>150</height>
+                      <width>540</width>
+                      <height>126</height>
                      </rect>
                     </property>
                     <property name="styleSheet">
@@ -1834,22 +1793,6 @@ QToolBox::tab::title {
                </widget>
               </item>
               <item>
-               <spacer name="horizontalSpacer_10">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
                <layout class="QHBoxLayout" name="horizontalLayout_12">
                 <item>
                  <widget class="QLabel" name="iconLabelConvertedCurrency">
@@ -2371,7 +2314,7 @@ QToolBox::tab::title {
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="groupFee"/>
   <buttongroup name="groupCustomFee"/>
+  <buttongroup name="groupFee"/>
  </buttongroups>
 </ui>
