@@ -220,3 +220,9 @@ void WalletFrame::outOfSyncWarningClicked()
 {
     Q_EMIT requestedSyncWarningInfo();
 }
+
+/** Signal to update the value of the PAC */
+void WalletFrame::receive_from_bitcoingui()
+{
+    Q_EMIT transmit_to_walletview();
+}

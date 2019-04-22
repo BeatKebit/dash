@@ -97,6 +97,7 @@ private Q_SLOTS:
     void updateMinFeeLabel();
     void updateSmartFeeLabel();
     void updateGlobalFeeVariables();
+    void receive_from_walletview();
 
 Q_SIGNALS:
     // Fired when a message should be reported to the user

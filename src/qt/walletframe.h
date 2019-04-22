@@ -48,6 +48,8 @@ public:
 Q_SIGNALS:
     /** Notify that the user has requested more information about the out-of-sync warning */
     void requestedSyncWarningInfo();
+    /** Send the signal to refresh the PAC value */
+    void transmit_to_walletview();
 
 private:
     QStackedWidget *walletStack;
@@ -97,6 +99,8 @@ public Q_SLOTS:
     void usedReceivingAddresses();
     /** Pass on signal over requested out-of-sync-warning information */
     void outOfSyncWarningClicked();
+    /** Receive the signal to refresh the PAC value */
+    void receive_from_bitcoingui();
 };
 
 #endif // BITCOIN_QT_WALLETFRAME_H

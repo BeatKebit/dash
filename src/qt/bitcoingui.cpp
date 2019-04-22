@@ -190,11 +190,10 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     rpcConsole = new RPCConsole(_platformStyle, 0);
     helpMessageDialog = new HelpMessageDialog(this, HelpMessageDialog::cmdline);
 #ifdef ENABLE_WALLET
-    //Rubik
-    //managerCurrency = new QNetworkAccessManager();
-    //QObject::connect(managerCurrency, SIGNAL(finished(QNetworkReply*)), this, SLOT(managerCurrencyFinished(QNetworkReply*)));
-    //requestCurrency.setUrl(QUrl("http://explorer.pachub.io/api/currency/USD"));
-    //managerCurrency->get(requestCurrency);
+    managerCurrency = new QNetworkAccessManager();
+    QObject::connect(managerCurrency, SIGNAL(finished(QNetworkReply*)), this, SLOT(managerCurrencyFinished(QNetworkReply*)));
+    requestCurrency.setUrl(QUrl("http://explorer.pachub.io/api/currency/USD"));
+    managerCurrency->get(requestCurrency);
 
     managerNews = new QNetworkAccessManager();
     QObject::connect(managerNews, SIGNAL(finished(QNetworkReply*)), this, SLOT(managerNewsFinished(QNetworkReply*)));
@@ -301,6 +300,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
         connect(walletFrame, SIGNAL(requestedSyncWarningInfo()), this, SLOT(showModalOverlay()));
         connect(labelBlocksIcon, SIGNAL(clicked(QPoint)), this, SLOT(showModalOverlay()));
         connect(progressBar, SIGNAL(clicked(QPoint)), this, SLOT(showModalOverlay()));
+        connect(this,SIGNAL(transmit_to_walletframe()), walletFrame, SLOT(receive_from_bitcoingui()));
     }
 #endif
 
@@ -1756,7 +1756,7 @@ void BitcoinGUI::handleRestart(QStringList args)
 }
 
 /** Manager that waits for the response of the value of PAC */
-/*void BitcoinGUI::managerCurrencyFinished(QNetworkReply *replyC) {
+void BitcoinGUI::managerCurrencyFinished(QNetworkReply *replyC) {
     if (replyC->error()) {
         QSettings settings;
         settings.setValue("PACvalue","0");
@@ -1776,7 +1776,7 @@ void BitcoinGUI::handleRestart(QStringList args)
     settings.sync();
     // Call to update the windows where the PAC value is shown
     Q_EMIT transmit_to_walletframe();
-}*/
+}
 
 /** Manager that waits for the response of the news */
 void BitcoinGUI::managerNewsFinished(QNetworkReply *replyN) {
