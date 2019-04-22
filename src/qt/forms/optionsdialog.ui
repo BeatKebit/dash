@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>576</width>
-    <height>489</height>
+    <width>700</width>
+    <height>496</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>700</width>
+    <height>16777215</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Options</string>
@@ -20,7 +26,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget_OptionsDialog">
      <property name="currentIndex">
-      <number>0</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="tabMain">
       <attribute name="title">
@@ -762,6 +768,20 @@ https://www.transifex.com/projects/p/dash/</string>
          </item>
          <item>
           <widget class="QValueComboBox" name="theme"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6_Display">
+         <item>
+          <widget class="QLabel" name="lblFontType">
+           <property name="text">
+            <string>Font Type:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFontComboBox" name="cboFontType"/>
          </item>
         </layout>
        </item>

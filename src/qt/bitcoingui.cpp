@@ -144,16 +144,24 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     spinnerFrame(0),
     platformStyle(_platformStyle)
 {
+    QSettings settings;
+    /* Setting the default Pac Theme
+    settings.setValue("theme", "pac");
+    QString currentFont = GUIUtil::getFontName(); */
+
+    /* Open CSS when configured */
+    GUIUtil::setGUITextColor();
     /* Add the custom Fonts to the wallet */
     QFontDatabase::addApplicationFont(":/fonts/VolteRounded-Medium");
     QFontDatabase::addApplicationFont(":/fonts/Gotham-Bold");
     QFontDatabase::addApplicationFont(":/fonts/Gotham-Medium");
 
+    this->setStyleSheet(GUIUtil::loadStyleSheet());
+
     /* Setting the default Pac Theme */
     //QSettings settings;
     //settings.setValue("theme", "");
-    QString currentFont = GUIUtil::getFontName();
-    std::cout << "CurrentFont: " << currentFont.toStdString() << std::endl;
+
 
     /* Open CSS when configured */
     this->setStyleSheet(GUIUtil::loadStyleSheet());
@@ -303,6 +311,10 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
         connect(this,SIGNAL(transmit_to_walletframe()), walletFrame, SLOT(receive_from_bitcoingui()));
     }
 #endif
+    QFont defaultFont(settings.value("FontType").toString(),14, QFont::Normal, false);
+    defaultFont.setBold(false);
+    defaultFont.setPixelSize(14);
+    QApplication::setFont(defaultFont);
 
     // set Background Image of window so it can keep aspect ratio >
     backgroundImage = QPixmap(":/images/drkblue/drkblue_walletFrame_bg");
@@ -310,6 +322,13 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     palette.setBrush(QPalette::Window, backgroundImage);
     this->setPalette(palette);
 
+
+    // set the custom selected typography for the ui form:
+    QFont selectedFont = GUIUtil::getCustomSelectedFont();
+    QList<QWidget*> widgets = this->findChildren<QWidget*>();
+    for (int i = 0; i < widgets.length(); i++){
+        widgets.at(i)->setFont(selectedFont);
+    }
     resize(QDesktopWidget().availableGeometry(this).size() * 0.75);
 }
 
