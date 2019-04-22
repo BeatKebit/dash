@@ -98,6 +98,7 @@ private Q_SLOTS:
     void updateSmartFeeLabel();
     void updateGlobalFeeVariables();
     void receive_from_walletview();
+    void on_lineConvertCurrency_textChanged(const QString &arg1);
 
 Q_SIGNALS:
     // Fired when a message should be reported to the user
