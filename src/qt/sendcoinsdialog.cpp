@@ -1030,3 +1030,9 @@ void SendConfirmationDialog::updateYesButton()
         yesButton->setText(tr("Yes"));
     }
 }
+
+/** Receive the signal to update the USD value when the USD-PAC value is updated */
+void SendCoinsDialog::receive_from_walletview()
+{
+    ui->labelAvailableUSD->setText("$ " + BitcoinUnits::pacToUsd(model->getBalance()) + " USD");
+}

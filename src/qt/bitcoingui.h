@@ -197,6 +197,9 @@ Q_SIGNALS:
     /** Restart handling */
     void requestedRestart(QStringList args);
 
+    /** Refresh PAC value to the walletframe */
+    void transmit_to_walletframe();
+
 public Q_SLOTS:
     /** Set number of connections shown in the UI */
     void setNumConnections(int count);
@@ -258,8 +261,7 @@ private Q_SLOTS:
     void gotoVerifyMessageTab(QString addr = "");
 
     /** API PAC_USD request */
-    //Rubik
-    //void managerCurrencyFinished(QNetworkReply *replyC);
+    void managerCurrencyFinished(QNetworkReply *replyC);
     /** API News request */
     void managerNewsFinished(QNetworkReply *replyN);
     /** Copy the text of the news */
