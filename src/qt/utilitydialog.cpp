@@ -166,6 +166,27 @@ For more information, see the <a href=\"https://docs.dash.org/en/latest/wallets/
         ui->aboutMessage->setWordWrap(true);
         ui->helpMessage->setVisible(false);
         ui->aboutLogo->setVisible(false);
+    }else if (helpMode == ovhelp) {
+        setWindowTitle(tr("OverviewPAC information"));
+
+        ui->aboutMessage->setTextFormat(Qt::RichText);
+        ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        ui->aboutMessage->setText(tr("\
+<h3>PAC Overview</h3> \
+PAC is a digital currency that enables anonymous, instant payments to anyone, anywhere in the world. \
+PAC uses peer-to-peer technology to operate with no central authority: managing transactions and issuing money are carried out collectively by the network. \
+PAC is the name of the open source software which enables the use of this currency.<hr><br> \
+On the left side of this window you can watch your balance, the available balance is the balance you can spend and do use of while the pending balance \
+first need to be confirmed by the network, this means that it is yours but first to avoid security issues it is need to be confirmed, and at the bottom is the total \
+(the sum of the available and pending). <br><br> \
+On the right side you can see all of your transactions, the coins you send, receive or get rewarded, if you click on one of them it will redirect you to \
+see all of the information of the transaction. <br> \
+For more information see https://wallets.paccoin.net/.<hr><br> \
+IMPORTANT: the convertion PAC to USD can have some fluctuation since the value is obtained from an external API (http://explorer.pachub.io/api/currency/USD) and the value is obtained when opening the wallet."));
+
+        ui->aboutMessage->setWordWrap(true);
+        ui->helpMessage->setVisible(false);
+        ui->aboutLogo->setVisible(false);
     }
     // Theme dependent Gfx in About popup
     QString helpMessageGfx = ":/images/" + GUIUtil::getThemeName() + "/about";

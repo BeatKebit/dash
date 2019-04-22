@@ -31,6 +31,7 @@
 #include <QSettings>
 #include <QTextDocument>
 #include <QTimer>
+#include <QPropertyAnimation>
 
 #define SEND_CONFIRM_DELAY   3
 
@@ -56,9 +57,14 @@ SendCoinsDialog::SendCoinsDialog(const PlatformStyle *_platformStyle, QWidget *p
         ui->sendButton->setIcon(QIcon(":/icons/" + theme + "/send"));
     }
 
-    GUIUtil::setupAddressWidget(ui->lineEditCoinControlChange, this);
+    ui->iconLabelConvertedCurrency->setPixmap(QPixmap(":icons/bitcoin-32"));
+    ui->iconLabelAvailableBalance->setPixmap(QPixmap(":icons/bitcoin-32"));
 
+    GUIUtil::setupAddressWidget(ui->lineEditCoinControlChange, this);
     addEntry();
+
+    //ui->advanced_page->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+
 
     connect(ui->addButton, SIGNAL(clicked()), this, SLOT(addEntry()));
     connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
@@ -667,12 +673,18 @@ void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn 
 
 void SendCoinsDialog::minimizeFeeSection(bool fMinimize)
 {
+    (fMinimize) ? (ui->toolBox->setCurrentIndex(0)) : (ui->toolBox->setCurrentIndex(1));
     ui->labelFeeMinimized->setVisible(fMinimize);
     ui->buttonChooseFee  ->setVisible(fMinimize);
     ui->buttonMinimizeFee->setVisible(!fMinimize);
     ui->frameFeeSelection->setVisible(!fMinimize);
     ui->horizontalLayoutSmartFee->setContentsMargins(0, (fMinimize ? 0 : 6), 0, 0);
     fFeeMinimized = fMinimize;
+    /*QPropertyAnimation *animation = new QPropertyAnimation(ui->toolBox, "currentIndex");
+    animation->setDuration(2500);
+    animation->setStartValue(0);
+    animation->setEndValue(1);
+    animation->start();*/
 }
 
 void SendCoinsDialog::on_buttonChooseFee_clicked()
@@ -966,13 +978,13 @@ void SendCoinsDialog::coinControlUpdateLabels()
 
         // show coin control stats
         ui->labelCoinControlAutomaticallySelected->hide();
-        ui->widgetCoinControl->show();
+        ui->scrollAreaCoinControl->show();
     }
     else
     {
         // hide coin control stats
         ui->labelCoinControlAutomaticallySelected->show();
-        ui->widgetCoinControl->hide();
+        ui->scrollAreaCoinControl->hide();
         ui->labelCoinControlInsuffFunds->hide();
     }
 }
