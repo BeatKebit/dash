@@ -7,6 +7,7 @@
 
 #include "amount.h"
 #include "masternodelist.h"
+#include "proposallist.h"
 
 #include <QStackedWidget>
 
@@ -68,6 +69,7 @@ private:
     AddressBookPage *usedSendingAddressesPage;
     AddressBookPage *usedReceivingAddressesPage;
     MasternodeList *masternodeListPage;
+    ProposalList *proposalList;
     PrivatePage *privatePage;
 
     TransactionView *transactionView;
@@ -81,6 +83,8 @@ public Q_SLOTS:
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
+    /** Switch to proposal page */
+    void gotoProposalPage();
     /** Switch to private page */
     void gotoPrivatePage();
     /** Switch to masternode page */

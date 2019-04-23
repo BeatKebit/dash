@@ -112,6 +112,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     overviewAction(0),
     historyAction(0),
     privateAction(0),
+    proposalAction(0),
     masternodeAction(0),
     quitAction(0),
     sendCoinsAction(0),
@@ -410,9 +411,9 @@ void BitcoinGUI::createActions()
     privateAction->setToolTip(historyAction->statusTip());
     privateAction->setCheckable(true);
 #ifdef Q_OS_MAC
-    privateAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_5));
+    privateAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
 #else
-    privateAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
+    privateAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
 #endif
     tabGroup->addAction(privateAction);
 
@@ -424,14 +425,25 @@ void BitcoinGUI::createActions()
         masternodeAction->setToolTip(masternodeAction->statusTip());
         masternodeAction->setCheckable(true);
 #ifdef Q_OS_MAC
-        masternodeAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_5));
+        masternodeAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_6));
 #else
-        masternodeAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
+        masternodeAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
 #endif
         tabGroup->addAction(masternodeAction);
         connect(masternodeAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
         connect(masternodeAction, SIGNAL(triggered()), this, SLOT(gotoMasternodePage()));
     }
+
+    proposalAction = new QAction(QIcon(":/icons/" + theme + "/proposal"), tr("&Proposals"), this);
+    proposalAction->setStatusTip(tr("Browse proposals"));
+    proposalAction->setToolTip(proposalAction->statusTip());
+    proposalAction->setCheckable(true);
+#ifdef Q_OS_MAC
+    proposalAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_5));
+#else
+    proposalAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
+#endif
+    tabGroup->addAction(proposalAction);
 
     // These showNormalIfMinimized are needed because Send Coins and Receive Coins
     // can be triggered from the tray menu, and need to show the GUI to be useful.
@@ -449,6 +461,8 @@ void BitcoinGUI::createActions()
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
     connect(privateAction, SIGNAL(triggered()), this, SLOT(gotoPrivatePage()));
     connect(privateAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(proposalAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(proposalAction, SIGNAL(triggered()), this, SLOT(gotoProposalPage()));
 
 #endif // ENABLE_WALLET
 
@@ -683,6 +697,7 @@ void BitcoinGUI::createToolBars()
         {
             toolbar->addAction(masternodeAction);
         }
+        toolbar->addAction(proposalAction);
         toolbar->addAction(privateAction);
         toolbar->setMovable(false); // remove unused icon in upper left corner
         overviewAction->setChecked(true);
@@ -944,6 +959,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     receiveCoinsAction->setEnabled(enabled);
     receiveCoinsMenuAction->setEnabled(enabled);
     historyAction->setEnabled(enabled);
+    proposalAction->setEnabled(enabled);
     privateAction->setEnabled(enabled);
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction) {
@@ -1114,6 +1130,13 @@ void BitcoinGUI::gotoHistoryPage()
     historyAction->setChecked(true);
     if (walletFrame) walletFrame->gotoHistoryPage();
 }
+
+void BitcoinGUI::gotoProposalPage()
+{
+    proposalAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoProposalPage();
+}
+
 void BitcoinGUI::gotoPrivatePage(){
     privateAction->setChecked(true);
     if (walletFrame) walletFrame->gotoPrivatePage();

@@ -121,12 +121,21 @@ void WalletFrame::gotoHistoryPage()
     for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
         i.value()->gotoHistoryPage();
 }
+
+void WalletFrame::gotoProposalPage()
+{
+    QMap<QString, WalletView*>::const_iterator i;
+    for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
+        i.value()->gotoProposalPage();
+}
+
 void WalletFrame::gotoPrivatePage()
 {
     QMap<QString, WalletView*>::const_iterator i;
     for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
         i.value()->gotoPrivatePage();
 }
+
 void WalletFrame::gotoMasternodePage()
 {
     QMap<QString, WalletView*>::const_iterator i;
