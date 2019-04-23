@@ -59,16 +59,16 @@ void ProposalTableModel::refreshProposals() {
     proposalRecords.clear();
 
     int mnCount = mnodeman.CountEnabled();
-
-    std::vector<CGovernanceObject*> objs = governance.GetAllNewerThan(0);
-
-    BOOST_FOREACH(CGovernanceObject* pGovObj, objs)
+    
+    std::vector<const CGovernanceObject*> objs = governance.GetAllNewerThan(0);
+    
+    BOOST_FOREACH(const CGovernanceObject* pGovObj, objs)
     {
         if(pGovObj->GetObjectType() != GOVERNANCE_OBJECT_PROPOSAL) continue;
 
         UniValue objResult(UniValue::VOBJ);
         UniValue dataObj(UniValue::VOBJ);
-        objResult.read(pGovObj->GetDataAsString());
+        objResult.read(pGovObj->GetDataAsPlainString());
 
         std::vector<UniValue> arr1 = objResult.getValues();
         std::vector<UniValue> arr2 = arr1.at( 0 ).getValues();

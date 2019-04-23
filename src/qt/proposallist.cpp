@@ -496,8 +496,8 @@ void ProposalList::vote_click_handler(const std::string voteString)
             continue;
         }
 
-        CGovernanceVote vote(mn.vin.prevout, hash, eVoteSignal, eVoteOutcome);
-        if(!vote.Sign(keyMasternode, pubKeyMasternode)){
+        CGovernanceVote vote(mn.outpoint, hash, eVoteSignal, eVoteOutcome);
+        if(!vote.Sign(keyMasternode, pubKeyMasternode.GetID())){
             nFailed++;
             continue;
         }
