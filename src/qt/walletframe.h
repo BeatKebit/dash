@@ -68,6 +68,8 @@ public Q_SLOTS:
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
+    /** Switch to proposal page */
+    void gotoProposalPage();
     /** Switch to private section page */
     void gotoPrivatePage();
     /** Switch to masternode page */

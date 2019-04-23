@@ -37,6 +37,8 @@ class WalletFrame;
 class WalletModel;
 class HelpMessageDialog;
 class ModalOverlay;
+class MasternodeList;
+class ProposalList;
 
 class CWallet;
 
@@ -101,6 +103,7 @@ private:
     QMenuBar *appMenuBar;
     QAction *overviewAction;
     QAction *historyAction;
+    QAction *proposalAction;
     QAction *privateAction;
     QAction *masternodeAction;
     QAction *quitAction;
@@ -246,6 +249,8 @@ private Q_SLOTS:
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
+    /** Switch to proposal page */
+    void gotoProposalPage();
     /** Switch to private (section) page */
     void gotoPrivatePage();
     /** Switch to masternode page */
