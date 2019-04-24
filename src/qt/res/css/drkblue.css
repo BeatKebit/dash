@@ -107,7 +107,6 @@ QTabBar::tab {
     width: 250px;
     color:#FFFFFF;
     min-height: 25px;
-
 }
 QTabBar::tab:hover, QTabBar::tab:hover {
     background-color: #202020 !important;
@@ -115,6 +114,7 @@ QTabBar::tab:hover, QTabBar::tab:hover {
 QTabBar::tab:selected{
     background-color: #F4EA13 !important;
     border: 1px solid black !important;
+    color: black;
 }
 QTabBar::tab {
     background: rgb(50,50,50);
@@ -723,12 +723,18 @@ MasternodeList > QTabBar::tab{
     height: 24px;
 }
 #tabWidget>QTabBar::tab {
+    margin-left: 12px;
+    border-radius: 8px;
     background-color: #1D1D1D !important;
     min-height: 25px;
+    width: 200px;
 }
 #tabWidget>QTabBar::tab:selected{
     background-color: #F4EA13 !important;
     border: 1px solid transparent !important;
+}
+#checkBoxMyMasternodesOnly{
+    min-width: 150px;
 }
 
 /*
@@ -737,6 +743,9 @@ MasternodeList > QTabBar::tab{
 
 #OptionsDialog > #resetButton{
     width:210px !important;
+}
+#tabWidget_OptionsDialog>QTabBar::tab {
+    border-radius: 8px;
 }
 
 /*
@@ -773,41 +782,41 @@ MasternodeList > QTabBar::tab{
 
 /*
     QToolBox: the one it was used in sendcoinsdialog for the recepients and advancedsettings
-   
 */
-
 QToolBox {
-       margin-right: 10px;
-       margin-left: 10px;
-       margin-top: 10px;
-       margin-bottom: 10px;
-       background-color: transparent;
-       font-weight: bold;
-        border: 0px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    font-weight: bold;
+    border: 0px;
 }
 QToolBox > QScrollArea > #qt_scrollarea_viewport > QWidget {
-        background: transparent;
+    background: transparent;
 }
 QToolBox > QWidget {
-       background-color: transparent;
+    background-color: transparent;
 }
-
 QToolBox::tab {
-       padding-left: 10px;
-       background-color: rgba(200,200,200,0.4);
+    padding-left: 10px;
+    background-color: rgba(200,200,200,0.4);
 }
-
 QToolBox::tab:first, QToolBox::tab:last {
-       border-top-left-radius: 0px;
-       border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 QToolBox::tab:selected {
-       border-bottom-left-radius: 0px;
-       border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 QToolBox::tab::title {
-       image: none;
-       subcontrol-position: top left;
-       subcontrol-origin: margin;
-       color: rgb(255, 255, 255);
+    image: none;
+    subcontrol-position: top left;
+    subcontrol-origin: margin;
+    color: rgb(255, 255, 255);
+}
+#toolBox>QTabBar::tab {
+    border-radius: 8px;
+    min-width: 150px;
 }

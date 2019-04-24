@@ -29,6 +29,9 @@
       <number>4</number>
      </property>
      <widget class="QWidget" name="tabMain">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <attribute name="title">
        <string>&amp;Main</string>
       </attribute>
@@ -60,6 +63,14 @@
          </item>
          <item>
           <widget class="QSpinBox" name="databaseCache">
+           <property name="styleSheet">
+            <string notr="true">#databaseCache{
+    border-radius: 10px !important;
+    font-size: 12px !important;
+    min-width: 40px !important;
+    min-height:20px !important;
+}</string>
+           </property>
            <property name="class" stdset="0">
             <string>SpinBoxSmall</string>
            </property>
@@ -109,6 +120,14 @@
           <widget class="QSpinBox" name="threadsScriptVerif">
            <property name="toolTip">
             <string>(0 = auto, &lt;0 = leave that many cores free)</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#threadsScriptVerif{
+    border-radius: 10px !important;
+    font-size: 12px !important;
+    min-width: 40px !important;
+    min-height:20px !important;
+}</string>
            </property>
            <property name="class" stdset="0">
             <string>SpinBoxSmall</string>
@@ -724,6 +743,14 @@
            <property name="toolTip">
             <string>The user interface language can be set here. This setting will take effect after restarting %1.</string>
            </property>
+           <property name="styleSheet">
+            <string notr="true">#lang{
+    border-radius: 10px !important;
+    font-size: 12px !important;
+    min-width: 40px !important;
+    min-height:20px !important;
+}</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -767,7 +794,16 @@ https://www.transifex.com/projects/p/dash/</string>
           </widget>
          </item>
          <item>
-          <widget class="QValueComboBox" name="theme"/>
+          <widget class="QValueComboBox" name="theme">
+           <property name="styleSheet">
+            <string notr="true">#theme{
+    border-radius: 10px !important;
+    font-size: 12px !important;
+    min-width: 40px !important;
+    min-height:20px !important;
+}</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -781,7 +817,16 @@ https://www.transifex.com/projects/p/dash/</string>
           </widget>
          </item>
          <item>
-          <widget class="QFontComboBox" name="cboFontType"/>
+          <widget class="QFontComboBox" name="cboFontType">
+           <property name="styleSheet">
+            <string notr="true">#cboFontType{
+    border-radius: 10px !important;
+    font-size: 12px !important;
+    min-width: 40px !important;
+    min-height:20px !important;
+}</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -812,6 +857,14 @@ https://www.transifex.com/projects/p/dash/</string>
            <property name="toolTip">
             <string>Choose the default subdivision unit to show in the interface and when sending coins.</string>
            </property>
+           <property name="styleSheet">
+            <string notr="true">#unit{
+    border-radius: 10px !important;
+    font-size: 12px !important;
+    min-width: 40px !important;
+    min-height:20px !important;
+}</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -826,7 +879,16 @@ https://www.transifex.com/projects/p/dash/</string>
           </widget>
          </item>
          <item>
-          <widget class="QValueComboBox" name="digits"/>
+          <widget class="QValueComboBox" name="digits">
+           <property name="styleSheet">
+            <string notr="true">#digits{
+    border-radius: 10px !important;
+    font-size: 12px !important;
+    min-width: 40px !important;
+    min-height:20px !important;
+}</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
