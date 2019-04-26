@@ -192,12 +192,13 @@ QStatusBar{
     background-color: rgba(250,250,250,0.5);
 }
 
-[class="SpinBoxSmall"]{
+[class="SpinBoxSmall"], [class="ComboBoxSmall"]
     border-radius: 10px !important;
     font-size: 12px !important;
     min-width: 40px !important;
     min-height:20px !important;
 }
+
 /* labels */
 QLabel[class="titleLabel"]{
     text-transform:uppercase;
