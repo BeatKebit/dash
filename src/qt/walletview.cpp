@@ -21,6 +21,7 @@
 #include "transactionview.h"
 #include "walletmodel.h"
 #include "privatepage.h"
+#include "walletframe.h"
 
 #include "ui_interface.h"
 
@@ -116,6 +117,13 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 
     // Pass through messages from transactionView
     connect(transactionView, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
+
+    // Refresh the value of PAC on the overview
+    connect(this,SIGNAL(transmit_to_overview()), overviewPage, SLOT(receive_from_walletview()));
+    // Refresh the value of PAC on the sendview
+    connect(this,SIGNAL(transmit_to_sendview()), sendCoinsPage, SLOT(receive_from_walletview()));
+    // Refresh the value of PAC on the receiveview
+    connect(this,SIGNAL(transmit_to_receiveview()), receiveCoinsPage, SLOT(receive_from_walletview()));
 }
 
 WalletView::~WalletView()
@@ -425,6 +433,7 @@ void WalletView::trxAmount(QString amount)
 /** Signal to update the value of PAC on the different windows */
 void WalletView::receive_from_walletframe()
 {
+    overviewPage->setContentsMargins(330,0,30,10);
     Q_EMIT transmit_to_overview();
     Q_EMIT transmit_to_sendview();
     Q_EMIT transmit_to_receiveview();

@@ -136,6 +136,11 @@ void ReceiveCoinsDialog::setModel(WalletModel *_model)
     if(_model && _model->getOptionsModel())
     {
         _model->getRecentRequestsTableModel()->sort(RecentRequestsTableModel::Date, Qt::DescendingOrder);
+        // Rubik
+        // connect(model->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
+        setBalance(model->getBalance(), model->getUnconfirmedBalance(), model->getImmatureBalance(), model->getAnonymizedBalance(),
+                    model->getWatchBalance(), model->getWatchUnconfirmedBalance(), model->getWatchImmatureBalance());
+        connect(model, SIGNAL(balanceChanged(CAmount,CAmount,CAmount,CAmount,CAmount,CAmount,CAmount)), this, SLOT(setBalance(CAmount,CAmount,CAmount,CAmount,CAmount,CAmount,CAmount)));
         connect(_model->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
         updateDisplayUnit();
 
@@ -233,6 +238,8 @@ void ReceiveCoinsDialog::updateDisplayUnit()
     {
         ui->reqAmount->setDisplayUnit(model->getOptionsModel()->getDisplayUnit());
     }
+    setBalance(model->getBalance(), model->getUnconfirmedBalance(), model->getImmatureBalance(), model->getAnonymizedBalance(),
+                   model->getWatchBalance(), model->getWatchUnconfirmedBalance(), model->getWatchImmatureBalance());
 }
 
 void ReceiveCoinsDialog::on_receiveButton_clicked()
@@ -485,5 +492,5 @@ void ReceiveCoinsDialog::setBalance(const CAmount& balance, const CAmount& uncon
 /** Receive the signal to update the USD value when the USD-PAC value is updated */
 void ReceiveCoinsDialog::receive_from_walletview()
 {
-    ui->labelAvailableUSD->setText("$ " + BitcoinUnits::pacToUsd(currentBalance) + " USD");
+    ui->labelAvailableUSD->setText("$ " + BitcoinUnits::pacToUsd(currentBalance) + " TEST");
 }

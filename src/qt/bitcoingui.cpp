@@ -71,7 +71,7 @@
 #include <QFontDatabase>
 //#include <QSpacerItem>
 #include <QFont>
-//#include <QProxyStyle>
+#include <QProxyStyle>
 //#include <QTreeWidget>
 
 #if QT_VERSION < 0x050000
@@ -94,6 +94,20 @@ const std::string BitcoinGUI::DEFAULT_UIPLATFORM =
 /** Display name for default wallet name. Uses tilde to avoid name
  * collisions in the future with additional wallets */
 const QString BitcoinGUI::DEFAULT_WALLET = "~Default";
+
+/** For the style on the comboBox */
+class MyProxyStyle : public QProxyStyle
+{
+public:
+    int styleHint( StyleHint hint, const QStyleOption*
+    option = 0, const QWidget* widget = 0, QStyleHintReturn* returnData =
+    0 ) const   
+    {
+    if( SH_ComboBox_Popup == hint )
+            return 0;//disable combo-box popup top & bottom areas
+        return QProxyStyle::styleHint( hint, option, widget, returnData );   
+    }
+};
 
 BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *networkStyle, QWidget *parent) :
     QMainWindow(parent),
@@ -563,6 +577,9 @@ void BitcoinGUI::createActions()
     
     // prevents an open debug window from becoming stuck/unusable on client shutdown
     connect(quitAction, SIGNAL(triggered()), rpcConsole, SLOT(hide()));
+
+    // Setting the new style for the comboBox
+    qApp->setStyle( new MyProxyStyle );
 
 #ifdef ENABLE_WALLET
     if(walletFrame)

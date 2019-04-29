@@ -363,7 +363,7 @@ void OverviewPage::on_overviewInfo_clicked()
 /** Receive the signal to update the USD value when the USD-PAC value is updated */
 void OverviewPage::receive_from_walletview()
 {
-    ui->labelBalanceUSD->setText("$ " + BitcoinUnits::pacToUsd(currentBalance) + " USD");
+    ui->labelBalanceUSD->setText("$ " + BitcoinUnits::pacToUsd(currentBalance) + " TEST");
     ui->labelUnconfirmedUSD->setText("$ " + BitcoinUnits::pacToUsd(currentUnconfirmedBalance) + " USD");
     ui->labelTotalUSD->setText("$ " + BitcoinUnits::pacToUsd(currentBalance + currentUnconfirmedBalance + currentImmatureBalance) + " USD");
 }

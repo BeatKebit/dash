@@ -8,6 +8,7 @@
 #include "amount.h"
 #include "masternodelist.h"
 #include "proposallist.h"
+#include "walletframe.h"
 
 #include <QStackedWidget>
 
