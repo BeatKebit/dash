@@ -150,6 +150,15 @@ SendCoinsDialog::SendCoinsDialog(const PlatformStyle *_platformStyle, QWidget *p
     ui->customFee->setValue(settings.value("nTransactionFee").toLongLong());
     ui->checkBoxMinimumFee->setChecked(settings.value("fPayOnlyMinFee").toBool());
     minimizeFeeSection(settings.value("fFeeSectionMinimized").toBool());
+
+    // removes the focus blue border that is native on Mac OS from all the QLineEdit
+    QList<QWidget*> widgets = this->findChildren<QWidget*>();
+    for (int i = 0; i < widgets.length(); i++){
+        std::string str(widgets.at(i)->metaObject()->className());
+        if(str.compare("QLineEdit") == 0){
+            widgets.at(i)->setAttribute(Qt::WA_MacShowFocusRect, false);
+        }
+    }
 }
 
 void SendCoinsDialog::setClientModel(ClientModel *_clientModel)
