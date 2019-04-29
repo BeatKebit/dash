@@ -942,7 +942,6 @@ QString getFontName()
 QFont getCustomSelectedFont()
 {
     QString fontType = getFontName();
-    std::cout << "font name: " << fontType.toStdString() << std::endl;
     QFont font = QFont(fontType,14, QFont::Normal, false);
     font.setPixelSize(14);
     return font;

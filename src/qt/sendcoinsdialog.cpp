@@ -159,6 +159,7 @@ SendCoinsDialog::SendCoinsDialog(const PlatformStyle *_platformStyle, QWidget *p
             widgets.at(i)->setAttribute(Qt::WA_MacShowFocusRect, false);
         }
     }
+    ui->toolBox->setCurrentIndex(0);
 }
 
 void SendCoinsDialog::setClientModel(ClientModel *_clientModel)
@@ -712,7 +713,6 @@ void SendCoinsDialog::on_buttonMinimizeFee_clicked()
 
 void SendCoinsDialog::tabSelected(){
     int tabIndex = ui->toolBox->currentIndex();
-    std::cout << tabIndex << std::endl;
     if(tabIndex == 0){
         minimizeFeeSection(true);
     }
