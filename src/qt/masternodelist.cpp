@@ -77,6 +77,15 @@ MasternodeList::MasternodeList(const PlatformStyle* platformStyle, QWidget* pare
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateDIP3ListScheduled()));
     timer->start(1000);
+    // removes the focus blue border that is native on Mac OS from all the QLineEdit
+    QList<QWidget*> widgets = this->findChildren<QWidget*>();
+    for (int i = 0; i < widgets.length(); i++){
+        std::string str(widgets.at(i)->metaObject()->className());
+        if(str.compare("QLineEdit") == 0 || str.compare("QValidatedLineEdit") == 0)
+            widgets.at(i)->setAttribute(Qt::WA_MacShowFocusRect, false);
+    }
+    ui->tableWidgetMasternodes->setAlternatingRowColors(false);
+
 }
 
 MasternodeList::~MasternodeList()
