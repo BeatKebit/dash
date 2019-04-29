@@ -609,8 +609,10 @@ void SendCoinsDialog::setBalance(const CAmount& balance, const CAmount& unconfir
 	    } else {
 		    bal = balance;
 	    }
-
-        ui->labelBalance->setText(BitcoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), bal));
+        // Sets the value of PACs
+        ui->labelBalance->setText(BitcoinUnits::floorHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), bal, false, BitcoinUnits::separatorAlways));
+        // Sets the value in USD
+        ui->labelAvailableUSD->setText("$ " + BitcoinUnits::pacToUsd(bal) + " USD");
     }
 }
 
@@ -1058,7 +1060,7 @@ void SendConfirmationDialog::updateYesButton()
 /** Receive the signal to update the USD value when the USD-PAC value is updated */
 void SendCoinsDialog::receive_from_walletview()
 {
-    ui->labelAvailableUSD->setText("$ " + BitcoinUnits::pacToUsd(model->getBalance()) + " USD");
+    ui->labelAvailableUSD->setText("$ " + BitcoinUnits::pacToUsd(model->getBalance()) + " TEST");
 }
 
 /** Convert PAC to USD */

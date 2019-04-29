@@ -59,6 +59,9 @@ bool WalletFrame::addWallet(const QString& name, WalletModel *walletModel)
 
     connect(walletView, SIGNAL(outOfSyncWarningClicked()), this, SLOT(outOfSyncWarningClicked()));
 
+    // Update the value of PAC on the different windows
+    connect(this,SIGNAL(transmit_to_walletview()), walletView, SLOT(receive_from_walletframe()));
+
     return true;
 }
 
