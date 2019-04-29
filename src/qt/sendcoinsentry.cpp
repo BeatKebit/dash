@@ -57,7 +57,6 @@ SendCoinsEntry::SendCoinsEntry(const PlatformStyle *_platformStyle, QWidget *par
     QList<QWidget*> widgets = this->findChildren<QWidget*>();
     for (int i = 0; i < widgets.length(); i++){
         std::string str(widgets.at(i)->metaObject()->className());
-        std::cout << str << std::endl;
         if(str.compare("QLineEdit") == 0 || str.compare("QValidatedLineEdit") == 0)
             widgets.at(i)->setAttribute(Qt::WA_MacShowFocusRect, false);
     }

@@ -212,6 +212,8 @@ void SendCoinsDialog::setModel(WalletModel *_model)
         connect(ui->checkBoxMinimumFee, SIGNAL(stateChanged(int)), this, SLOT(updateFeeSectionControls()));
         connect(ui->checkBoxMinimumFee, SIGNAL(stateChanged(int)), this, SLOT(updateGlobalFeeVariables()));
         connect(ui->checkBoxMinimumFee, SIGNAL(stateChanged(int)), this, SLOT(coinControlUpdateLabels()));
+        connect(ui->toolBox, SIGNAL(currentChanged(int)), this, SLOT(tabSelected()));
+
         ui->customFee->setSingleStep(CWallet::GetRequiredFee(1000));
         updateFeeSectionControls();
         updateMinFeeLabel();
@@ -682,7 +684,6 @@ void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn 
 
 void SendCoinsDialog::minimizeFeeSection(bool fMinimize)
 {
-    (fMinimize) ? (ui->toolBox->setCurrentIndex(0)) : (ui->toolBox->setCurrentIndex(1));
     ui->labelFeeMinimized->setVisible(fMinimize);
     ui->buttonChooseFee  ->setVisible(fMinimize);
     ui->buttonMinimizeFee->setVisible(!fMinimize);
@@ -698,14 +699,28 @@ void SendCoinsDialog::minimizeFeeSection(bool fMinimize)
 
 void SendCoinsDialog::on_buttonChooseFee_clicked()
 {
+    (false) ? (ui->toolBox->setCurrentIndex(0)) : (ui->toolBox->setCurrentIndex(1));
     minimizeFeeSection(false);
 }
 
 void SendCoinsDialog::on_buttonMinimizeFee_clicked()
 {
+    (true) ? (ui->toolBox->setCurrentIndex(0)) : (ui->toolBox->setCurrentIndex(1));
     updateFeeMinimizedLabel();
     minimizeFeeSection(true);
 }
+
+void SendCoinsDialog::tabSelected(){
+    int tabIndex = ui->toolBox->currentIndex();
+    std::cout << tabIndex << std::endl;
+    if(tabIndex == 0){
+        minimizeFeeSection(true);
+    }
+    else if(tabIndex == 1){
+        minimizeFeeSection(false);
+    }
+}
+
 
 void SendCoinsDialog::setMinimumFee()
 {
