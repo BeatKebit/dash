@@ -192,7 +192,7 @@ QStatusBar{
     background-color: rgba(250,250,250,0.5);
 }
 
-[class="SpinBoxSmall"], [class="ComboBoxSmall"]
+[class="SpinBoxSmall"], [class="ComboBoxSmall"]{
     border-radius: 10px !important;
     font-size: 12px !important;
     min-width: 40px !important;

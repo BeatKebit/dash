@@ -1818,12 +1818,27 @@
                   </property>
                   <property name="minimumSize">
                    <size>
-                    <width>30</width>
+                    <width>0</width>
                     <height>0</height>
                    </size>
                   </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::NoFrame</enum>
+                  </property>
                   <property name="text">
                    <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap resource="../dash.qrc">:/icons/bitcoin-32</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -2325,10 +2340,12 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../dash.qrc"/>
+ </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="groupCustomFee"/>
   <buttongroup name="groupFee"/>
+  <buttongroup name="groupCustomFee"/>
  </buttongroups>
 </ui>
