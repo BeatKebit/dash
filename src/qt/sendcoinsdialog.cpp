@@ -1060,7 +1060,7 @@ void SendConfirmationDialog::updateYesButton()
 /** Receive the signal to update the USD value when the USD-PAC value is updated */
 void SendCoinsDialog::receive_from_walletview()
 {
-    ui->labelAvailableUSD->setText("$ " + BitcoinUnits::pacToUsd(model->getBalance()) + " TEST");
+    ui->labelAvailableUSD->setText("$ " + BitcoinUnits::pacToUsd(model->getBalance()) + " USD");
 }
 
 /** Convert PAC to USD */

@@ -433,7 +433,6 @@ void WalletView::trxAmount(QString amount)
 /** Signal to update the value of PAC on the different windows */
 void WalletView::receive_from_walletframe()
 {
-    overviewPage->setContentsMargins(330,0,30,10);
     Q_EMIT transmit_to_overview();
     Q_EMIT transmit_to_sendview();
     Q_EMIT transmit_to_receiveview();
