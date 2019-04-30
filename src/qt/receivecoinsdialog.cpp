@@ -492,5 +492,5 @@ void ReceiveCoinsDialog::setBalance(const CAmount& balance, const CAmount& uncon
 /** Receive the signal to update the USD value when the USD-PAC value is updated */
 void ReceiveCoinsDialog::receive_from_walletview()
 {
-    ui->labelAvailableUSD->setText("$ " + BitcoinUnits::pacToUsd(currentBalance) + " TEST");
+    ui->labelAvailableUSD->setText("$ " + BitcoinUnits::pacToUsd(currentBalance) + " USD");
 }

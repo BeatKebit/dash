@@ -19,8 +19,7 @@
 #include <QPushButton>
 #include <QToolButton>
 #include <QSystemTrayIcon>
-//Rubik
-//#include <boost/filesystem/path.hpp>
+#include <boost/filesystem/path.hpp>
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
