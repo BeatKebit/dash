@@ -841,7 +841,6 @@ QCalendarWidget QToolButton {
         width: 100px;
         color: white;
         font-size: 18px;
-        icon: url(:/images/drkblue/drkblue_upArrow_small);
         icon-size: 32px, 32px;
         background-color:transparent;
 }

@@ -586,6 +586,7 @@ QWidget *TransactionView::createDateRangeWidget()
 
     dateFrom = new QDateTimeEdit(this);
     dateFrom->setProperty("class","ComboBoxSmall");
+    dateFrom->setObjectName("startDateWidget");
     dateFrom->setCalendarPopup(true);
     dateFrom->setMinimumWidth(100);
     // Load persisted FROM date
@@ -596,6 +597,7 @@ QWidget *TransactionView::createDateRangeWidget()
 
     dateTo = new QDateTimeEdit(this);
     dateTo->setProperty("class","ComboBoxSmall");
+    dateTo->setObjectName("endDateWidget");
 
     dateTo->setCalendarPopup(true);
     dateTo->setMinimumWidth(100);
