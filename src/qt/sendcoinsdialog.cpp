@@ -32,6 +32,9 @@
 #include <QTextDocument>
 #include <QTimer>
 #include <QPropertyAnimation>
+#include <QClipboard>
+#include <QToolTip>
+
 
 #define SEND_CONFIRM_DELAY   3
 
@@ -1087,3 +1090,13 @@ void SendCoinsDialog::on_lineConvertCurrency_textChanged(const QString &arg1)
         ui->labelConvertionUSD->setText("0.0");
     }
 }
+/** Copy the value of the convertion of USD to PAC to the clipboard */
+void SendCoinsDialog::on_copyPacs_clicked()
+{
+    QClipboard *clip = QApplication::clipboard();
+    QString input = ui->labelConvertionUSD->text();
+    input.replace( ",", " " );
+    clip->setText(input);
+    QToolTip::showText(ui->copyPacs->mapToGlobal(QPoint(10,10)), "Copied PACs to clipboard!",ui->copyPacs);
+}
+
