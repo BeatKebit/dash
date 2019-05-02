@@ -149,80 +149,6 @@ QStatusBar::item{
     border: none;
 }
 
-/* Global with classes */
-[class="container"]{
-    background-color: rgba(0,0,0,0.5); 
-    border: 0px !important;
-}
-[class="LineEdit"], [class="LineEdit_PacCoins"], [class="LineEditSmall"]{
-    border: 0px;
-    outline:0;
-    padding:3px;
-    background-color: rgba(67,67,67,0.5);
-    color: #fff;
-}
-[class="LineEdit"], [class="LineEdit_PacCoins"]{
-    height: 40px !important;
-    font-size: 15px;
-    border-radius: 20px;
-}
-[class="LineEditMedium"]{
-    height: 28px !important;
-    font-size: 13px;
-    border-radius: 14px;
-    text-align: center;
-}
-[class="LineEditSmall"]{
-    height: 18px !important;
-    font-size: 13px;
-    border-radius: 9px;
-}
-[class="LineEdit"]:focus, [class="LineEditSmall"]:focus, [class="LineEditMedium"]:focus {
-    font-size:12px;
-}
-[class="LineEdit"]:disabled, [class="LineEditSmall"]:disabled, [class="LineEditMedium"]:disabled {
-    background-color:#474747;
-    color: #878787;
-}
-[class="QuickButton"]{
-    background-color: transparent;
-    border: none;
-    border-radius: 10px;
-}
-[class="QuickButton"]:hover{
-    background-color: rgba(128,128,128,0.2);
-}
-[class="QuickButton"]:pressed{
-    background-color: rgba(250,250,250,0.5);
-}
-
-[class="SpinBoxSmall"], [class="ComboBoxSmall"]{
-    border-radius: 10px !important;
-    font-size: 12px !important;
-    min-width: 40px !important;
-    min-height:20px !important;
-}
-
-/* labels */
-QLabel[class="titleLabel"]{
-    text-transform:uppercase;
-    color: #FFF;
-    font-size:18px;
-}
-QLabel[class="pacCoinsLabel"]{
-    margin: 0px;
-    color: #F4EA13;
-    font-size: 32px;
-    font-weight: medium;
-}
-QLabel[class="usdLabel"]{
-    color: #FFF;
-    font-size: 23px;
-    font-weight: normal;
-}
-QLabel[class="labelPacIcon"]{
-    margin: 0px;
-}
 /*textarea*/
 QPlainTextEdit {
     background: rgb(255, 0, 0);
@@ -412,7 +338,7 @@ QPushButton {
     font-size: 16px;
 }
 QPushButton:hover, QPushButton:focus{
-    background: rgb(243,232,56) !important;
+    background: rgb(243,232,56);
     border: 1px solid rgb(243,232,56);
     color: rgb(5,5,5);
 }
@@ -426,8 +352,80 @@ QPushButton:pressed {
     border: 0px !important;
     color: rgb(243,232,56) !important;
 }
-/* Style of buttons with classes */
+/* Global with classes */
+[class="container"]{
+    background-color: rgba(0,0,0,0.5); 
+    border: 0px !important;
+}
+[class="containerSmall"]{
+    background-color: rgba(71,71,71,0.5); 
+    border: 0px !important;
+    border-radius: 7px;
+}
+[class="LineEdit"], [class="LineEdit_PacCoins"], [class="LineEditSmall"]{
+    border: 0px;
+    outline:0;
+    padding:3px;
+    background-color: rgba(67,67,67,0.5);
+    color: #fff;
+}
+[class="LineEdit"], [class="LineEdit_PacCoins"]{
+    height: 40px !important;
+    font-size: 15px;
+    border-radius: 20px;
+}
+[class="LineEditMedium"]{
+    height: 28px !important;
+    font-size: 13px;
+    border-radius: 14px;
+    text-align: center;
+}
+[class="LineEditSmall"]{
+    height: 18px !important;
+    font-size: 13px;
+    border-radius: 9px;
+}
+[class="LineEdit"]:focus, [class="LineEditSmall"]:focus, [class="LineEditMedium"]:focus {
+    font-size:12px;
+}
+[class="LineEdit"]:disabled, [class="LineEditSmall"]:disabled, [class="LineEditMedium"]:disabled {
+    background-color:#474747;
+    color: #878787;
+}
+[class="QuickButton"]{
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+}
+[class="SpinBoxSmall"], [class="ComboBoxSmall"]{
+    border-radius: 10px !important;
+    font-size: 12px !important;
+    min-width: 40px !important;
+    min-height:20px !important;
+}
 
+/* labels with classes */
+QLabel[class="titleLabel"]{
+    text-transform:uppercase;
+    color: #FFF;
+    font-size:18px;
+}
+QLabel[class="pacCoinsLabel"]{
+    margin: 0px;
+    color: #F4EA13;
+    font-size: 32px;
+    font-weight: medium;
+}
+QLabel[class="usdLabel"]{
+    color: #FFF;
+    font-size: 23px;
+    font-weight: normal;
+}
+QLabel[class="labelPacIcon"]{
+    margin: 0px;
+}
+
+/* Style of buttons with classes */
 [class="SmallButton"]{
     border-radius: 8px;
     height: 20px;
@@ -463,13 +461,31 @@ QPushButton:pressed {
     border: none;
     background: #F4EA13;
     color: rgb(5,5,5);
-    border-radius: 35px;
-    height: 70px !important;
-    width: 360px;
+    border-radius: 30px;
+    height: 60px !important;
+    width: 350px;
     font-style: normal;
     font-size: 22px;
     font-weight:medium;
 }
+[class="QuickButton"]:hover{
+    background-color: rgba(128,128,128,0.2);
+}
+[class="QuickButton"]:pressed{
+    background-color: rgba(250,250,250,0.5);
+}
+[class="QuickButton2"]{
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+}
+[class="QuickButton2"]:hover, [class="QuickButton2"]:focus{
+    background-color: rgba(71,71,71,0.2);
+}
+[class="QuickButton2"]:pressed{
+    background-color: rgba(71,71,71,0.5);
+}
+
 QCheckBox, QRadioButton {
     color: #FFF;
     width: 9px;
@@ -621,6 +637,9 @@ BitcoinAmountField QComboBox::indicator {
 }
 #verticalWidget{
     margin-left: 25px !important;
+}
+#convertCurrencyFrame{
+    margin-right: 10px;
 }
 
 /*
@@ -824,4 +843,61 @@ QToolBox::tab::title {
 #toolBox>QTabBar::tab {
     border-radius: 8px;
     min-width: 150px;
+}
+
+
+/*
+    QCalendarWidget:
+*/
+
+/* navigation bar */
+
+QCalendarWidget QWidget#qt_calendar_navigationbar {
+    background-color: #222;
+}
+QCalendarWidget QToolButton {
+        height: 50px;
+        width: 100px;
+        color: white;
+        font-size: 18px;
+        icon: url(:/images/drkblue/drkblue_upArrow_small);
+        icon-size: 32px, 32px;
+        background-color:transparent;
+}
+QCalendarWidget QMenu {
+        width: 200px;
+        left: 20px;
+        color: white;
+        font-size: 16px;
+        background-color: rgb(80, 80, 80);
+}
+QCalendarWidget QSpinBox {
+        width: 50px;
+        font-size:18px;
+        color: white;
+        background-color: #222; /*qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 #cccccc, stop: 1 #333333);*/
+        selection-background-color: rgb(136, 136, 136);
+        selection-color: rgb(255, 255, 255);
+}
+QCalendarWidget QSpinBox::up-button   { subcontrol-origin: border; subcontrol-position: top    right; width:55px; }
+QCalendarWidget QSpinBox::down-button { subcontrol-origin: border; subcontrol-position: bottom right; width:55px; }
+QCalendarWidget QSpinBox::up-, QCalendarWidget QSpinBox::down-arrow { width:55px; height:40px; }
+
+/* header row */
+QCalendarWidget QWidget {
+    alternate-background-color: #666;
+}
+
+/* normal days */
+QCalendarWidget QAbstractItemView:enabled
+{
+    font-size:18px;
+    color: rgb(180, 180, 180);
+    background-color: #222;
+    selection-background-color: rgb(64, 64, 64);
+    selection-color: rgb(0, 200, 0);
+}
+/* days in other months */
+QCalendarWidget QAbstractItemView:disabled {
+    color: rgb(64, 64, 64);
 }
