@@ -5,6 +5,7 @@
 #include "clientmodel.h"
 #include "clientversion.h"
 #include "guiutil.h"
+#include "guiconstants.h"
 #include "init.h"
 #include "masternode-sync.h"
 #include "netbase.h"
@@ -63,6 +64,9 @@ MasternodeList::MasternodeList(const PlatformStyle* platformStyle, QWidget* pare
     ui->tableWidgetMasternodesDIP3->setColumnHidden(8, true);
 
     ui->tableWidgetMasternodesDIP3->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    ui->tableWidgetMasternodesDIP3->setAlternatingRowColors(false);
+    ui->tableWidgetMasternodesDIP3->setShowGrid(false);
 
     QAction* copyProTxHashAction = new QAction(tr("Copy ProTx Hash"), this);
     QAction* copyCollateralOutpointAction = new QAction(tr("Copy Collateral Outpoint"), this);
