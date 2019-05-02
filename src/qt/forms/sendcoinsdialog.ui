@@ -67,7 +67,7 @@
                  <x>0</x>
                  <y>0</y>
                  <width>784</width>
-                 <height>562</height>
+                 <height>540</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
@@ -105,6 +105,22 @@
                 </item>
                </layout>
               </widget>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>Convert Currency Tool</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>false</bool>
+              </property>
+              <property name="indent">
+               <number>10</number>
+              </property>
              </widget>
             </item>
             <item>
@@ -231,7 +247,7 @@
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QLabel" name="label_7">
+                  <widget class="QLabel" name="CurrencyToConvert">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -275,7 +291,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="btnChangePacUsd">
+                  <widget class="QPushButton" name="btnInvertCurrency">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                      <horstretch>0</horstretch>
@@ -284,13 +300,13 @@
                    </property>
                    <property name="minimumSize">
                     <size>
-                     <width>0</width>
-                     <height>0</height>
+                     <width>13</width>
+                     <height>20</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>14</width>
+                     <width>20</width>
                      <height>20</height>
                     </size>
                    </property>
@@ -349,7 +365,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="labelConvertionUSD">
+                  <widget class="QLabel" name="labelConvertion">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -379,7 +395,7 @@
                     <string>0.0</string>
                    </property>
                    <property name="alignment">
-                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                    <set>Qt::AlignCenter</set>
                    </property>
                    <property name="textInteractionFlags">
                     <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -804,7 +820,7 @@
                           <rect>
                            <x>0</x>
                            <y>0</y>
-                           <width>744</width>
+                           <width>415</width>
                            <height>126</height>
                           </rect>
                          </property>

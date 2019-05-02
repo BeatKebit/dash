@@ -161,6 +161,8 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     platformStyle(_platformStyle)
 {
     QSettings settings;
+    settings.setValue("currencyToConvert", "USD");
+
     /* Setting the default Pac Theme
     settings.setValue("theme", "pac");
     QString currentFont = GUIUtil::getFontName(); */

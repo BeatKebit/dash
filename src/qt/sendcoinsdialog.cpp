@@ -1072,31 +1072,67 @@ void SendCoinsDialog::on_lineConvertCurrency_textChanged(const QString &arg1)
     bool ok;
     double dbal;
     dbal = arg1.toDouble(&ok);
-    if(ok){
+    if(ok)
+    {
         QSettings settings;
         double dval = (settings.value("PACvalue").toString()).toDouble();
-        QString sconv = QString::number(dbal/dval, 'g', 17);
+
+        QString sconv;
+        if(settings.value("currencyToConvert").toString() == "PAC")
+            sconv = QString::number(dbal*dval, 'g', 17);
+        else if(settings.value("currencyToConvert").toString() == "USD")
+            sconv = QString::number(dbal/dval, 'g', 17);
 
         QStringList list1 = sconv.split('.');
         int q_size = list1[0].size();
             for (int i = 3; i < q_size; i += 3)
                 list1[0].insert(q_size - i, ',');
-        if(list1.length() == 1){
-            ui->labelConvertionUSD->setText(list1[0]);
-        }else{
-            ui->labelConvertionUSD->setText(list1[0] + '.' + list1[1].left(8));
+        if(list1.length() == 1)
+        {
+            ui->labelConvertion->setText(list1[0]);
         }
-    }else{
-        ui->labelConvertionUSD->setText("0.0");
+        else{
+            ui->labelConvertion->setText(list1[0] + '.' + list1[1].left(8));
+        }
+    }
+    else
+    {
+        ui->labelConvertion->setText("0.0");
     }
 }
 /** Copy the value of the convertion of USD to PAC to the clipboard */
 void SendCoinsDialog::on_copyPacs_clicked()
 {
     QClipboard *clip = QApplication::clipboard();
-    QString input = ui->labelConvertionUSD->text();
+    QString input = ui->labelConvertion->text();
     input.replace( ",", " " );
     clip->setText(input);
     QToolTip::showText(ui->copyPacs->mapToGlobal(QPoint(10,10)), "Copied PACs to clipboard!",ui->copyPacs);
+}
+
+/** Invert the currency convertor */
+void SendCoinsDialog::on_btnInvertCurrency_clicked()
+{
+    QString toConvert = ui->lineConvertCurrency->text();
+    QString Converted = ui->labelConvertion->text();
+    QSettings setting;
+    QString currency = setting.value("currencyToConvert").toString();
+
+    ui->lineConvertCurrency->setText(Converted);
+    ui->labelConvertion->setText(toConvert);
+
+    if(currency == "USD"){
+        ui->lineConvertCurrency->setPlaceholderText("coins");
+        ui->CurrencyToConvert->setText("PAC");
+        ui->iconLabelConvertedCurrency->setVisible(false);
+        setting.setValue("currencyToConvert", "PAC");
+    }
+    else{
+        ui->lineConvertCurrency->setPlaceholderText("Dollars");
+        ui->CurrencyToConvert->setText("USD");
+        ui->iconLabelConvertedCurrency->setVisible(true);
+        setting.setValue("currencyToConvert", "USD");
+    }
+    QToolTip::showText(ui->btnInvertCurrency->mapToGlobal(QPoint(10,10)), "Currency convert tool inverted!",ui->btnInvertCurrency);
 }
 
