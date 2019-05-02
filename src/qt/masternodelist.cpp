@@ -5,6 +5,7 @@
 #include "clientmodel.h"
 #include "clientversion.h"
 #include "guiutil.h"
+#include "guiconstants.h"
 #include "init.h"
 #include "masternode-sync.h"
 #include "masternodeconfig.h"
@@ -86,6 +87,15 @@ MasternodeList::MasternodeList(const PlatformStyle* platformStyle, QWidget* pare
     ui->tableWidgetMyMasternodes->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->tableWidgetMasternodesDIP3->setContextMenuPolicy(Qt::CustomContextMenu);
 
+    ui->tableWidgetMasternodes->setAlternatingRowColors(false);
+    ui->tableWidgetMasternodes->setShowGrid(false);
+
+    ui->tableWidgetMyMasternodes->setAlternatingRowColors(false);
+    ui->tableWidgetMyMasternodes->setShowGrid(false);
+
+    ui->tableWidgetMasternodesDIP3->setAlternatingRowColors(false);
+    ui->tableWidgetMasternodesDIP3->setShowGrid(false);
+
     QAction* startAliasAction = new QAction(tr("Start alias"), this);
     contextMenu = new QMenu();
     contextMenu->addAction(startAliasAction);
@@ -123,7 +133,6 @@ MasternodeList::MasternodeList(const PlatformStyle* platformStyle, QWidget* pare
         if(str.compare("QLineEdit") == 0 || str.compare("QValidatedLineEdit") == 0)
             widgets.at(i)->setAttribute(Qt::WA_MacShowFocusRect, false);
     }
-    ui->tableWidgetMasternodes->setAlternatingRowColors(false);
 }
 
 MasternodeList::~MasternodeList()
@@ -385,6 +394,9 @@ void MasternodeList::updateNodeList()
 
     std::map<COutPoint, CMasternode> mapMasternodes = mnodeman.GetFullMasternodeMap();
 
+    QBrush notEnabled;
+    notEnabled.setColor(COLOR_NEGATIVE);
+
     for (const auto& mnpair : mapMasternodes) {
         CMasternode mn = mnpair.second;
         // populate list
@@ -410,6 +422,8 @@ void MasternodeList::updateNodeList()
         ui->tableWidgetMasternodes->setItem(0, 0, addressItem);
         ui->tableWidgetMasternodes->setItem(0, 1, protocolItem);
         ui->tableWidgetMasternodes->setItem(0, 2, statusItem);
+        if(statusItem->text()!="ENABLED")
+            ui->tableWidgetMasternodes->item(0,2)->setForeground(notEnabled);
         ui->tableWidgetMasternodes->setItem(0, 3, activeSecondsItem);
         ui->tableWidgetMasternodes->setItem(0, 4, lastSeenItem);
         ui->tableWidgetMasternodes->setItem(0, 5, pubkeyItem);
