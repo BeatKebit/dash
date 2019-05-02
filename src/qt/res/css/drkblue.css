@@ -469,7 +469,7 @@ QPushButton:pressed {
 [class="QuickButton"]{
     background-color: transparent;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 [class="SpinBoxSmall"], [class="ComboBoxSmall"]{
     border-radius: 10px !important;
