@@ -1118,6 +1118,8 @@ void SendCoinsDialog::on_btnInvertCurrency_clicked()
     QSettings setting;
     QString currency = setting.value("currencyToConvert").toString();
 
+    Converted = Converted.replace(",", "");
+
     ui->lineConvertCurrency->setText(Converted);
     ui->labelConvertion->setText(toConvert);
 
