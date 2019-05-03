@@ -59,9 +59,8 @@ SendCoinsDialog::SendCoinsDialog(const PlatformStyle *_platformStyle, QWidget *p
         ui->clearButton->setIcon(QIcon(":/icons/" + theme + "/remove"));
         ui->sendButton->setIcon(QIcon(":/icons/" + theme + "/send"));
     }
-
-    ui->iconLabelConvertedCurrency->setPixmap(QPixmap(":icons/bitcoin-32"));
     ui->iconLabelAvailableBalance->setPixmap(QPixmap(":icons/bitcoin-32"));
+    ui->iconLabelConvertedCurrency->setPixmap(QPixmap(":icons/bitcoin-32").scaled(20,20, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     GUIUtil::setupAddressWidget(ui->lineEditCoinControlChange, this);
     addEntry();
@@ -1115,24 +1114,27 @@ void SendCoinsDialog::on_btnInvertCurrency_clicked()
 {
     QString toConvert = ui->lineConvertCurrency->text();
     QString Converted = ui->labelConvertion->text();
-    QSettings setting;
-    QString currency = setting.value("currencyToConvert").toString();
 
     Converted = Converted.replace(",", "");
 
     ui->lineConvertCurrency->setText(Converted);
+    (toConvert == NULL || toConvert == "") ? toConvert = "0.0" : toConvert;
     ui->labelConvertion->setText(toConvert);
 
+    QSettings setting;
+    QString currency = setting.value("currencyToConvert").toString();
     if(currency == "USD"){
-        ui->lineConvertCurrency->setPlaceholderText("coins");
-        ui->CurrencyToConvert->setText("PAC");
-        ui->iconLabelConvertedCurrency->setVisible(false);
+        ui->lineConvertCurrency->setPlaceholderText("PAC's");
+        ui->iconLabelConvertedCurrency->setPixmap(QPixmap(""));
+        ui->CurrencyToConvert->setPixmap(QPixmap(":icons/bitcoin-32").scaled(20,20, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->iconLabelConvertedCurrency->setText("USD");
         setting.setValue("currencyToConvert", "PAC");
     }
     else{
         ui->lineConvertCurrency->setPlaceholderText("Dollars");
+        ui->iconLabelConvertedCurrency->setPixmap(QPixmap(":icons/bitcoin-32").scaled(20,20, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui->CurrencyToConvert->setPixmap(QPixmap(""));
         ui->CurrencyToConvert->setText("USD");
-        ui->iconLabelConvertedCurrency->setVisible(true);
         setting.setValue("currencyToConvert", "USD");
     }
     QToolTip::showText(ui->btnInvertCurrency->mapToGlobal(QPoint(10,10)), "Currency convert tool inverted!",ui->btnInvertCurrency);

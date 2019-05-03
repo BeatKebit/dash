@@ -67,7 +67,7 @@
                  <x>0</x>
                  <y>0</y>
                  <width>784</width>
-                 <height>540</height>
+                 <height>538</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
@@ -254,11 +254,18 @@
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>12</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
                    <property name="text">
                     <string>USD</string>
                    </property>
                    <property name="alignment">
-                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    <set>Qt::AlignCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -272,15 +279,20 @@
                    </property>
                    <property name="minimumSize">
                     <size>
-                     <width>150</width>
+                     <width>130</width>
                      <height>0</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>150</width>
+                     <width>130</width>
                      <height>16777215</height>
                     </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>15</pointsize>
+                    </font>
                    </property>
                    <property name="placeholderText">
                     <string>Dollars</string>
@@ -300,7 +312,7 @@
                    </property>
                    <property name="minimumSize">
                     <size>
-                     <width>13</width>
+                     <width>20</width>
                      <height>20</height>
                     </size>
                    </property>
@@ -311,7 +323,7 @@
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">border-image: url(:/icons/drkblue/tx_inout);</string>
+                    <string notr="true">border-image: url(:/movies/spinner-000);</string>
                    </property>
                    <property name="text">
                     <string/>
@@ -343,24 +355,44 @@
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>20</width>
-                     <height>20</height>
+                     <width>16777215</width>
+                     <height>16777215</height>
                     </size>
+                   </property>
+                   <property name="baseSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>12</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                     <kerning>true</kerning>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true"/>
                    </property>
                    <property name="frameShape">
                     <enum>QFrame::NoFrame</enum>
                    </property>
                    <property name="text">
-                    <string/>
+                    <string>PAC</string>
                    </property>
-                   <property name="pixmap">
-                    <pixmap resource="../dash.qrc">:/icons/bitcoin-32</pixmap>
+                   <property name="textFormat">
+                    <enum>Qt::AutoText</enum>
                    </property>
                    <property name="scaledContents">
-                    <bool>true</bool>
+                    <bool>false</bool>
                    </property>
                    <property name="alignment">
-                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
                    </property>
                   </widget>
                  </item>
@@ -386,7 +418,7 @@
                    </property>
                    <property name="font">
                     <font>
-                     <pointsize>18</pointsize>
+                     <pointsize>16</pointsize>
                      <weight>75</weight>
                      <bold>true</bold>
                     </font>
@@ -820,7 +852,7 @@
                           <rect>
                            <x>0</x>
                            <y>0</y>
-                           <width>415</width>
+                           <width>744</width>
                            <height>126</height>
                           </rect>
                          </property>
@@ -2601,12 +2633,10 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="../dash.qrc"/>
- </resources>
+ <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="groupCustomFee"/>
   <buttongroup name="groupFee"/>
+  <buttongroup name="groupCustomFee"/>
  </buttongroups>
 </ui>
