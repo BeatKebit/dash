@@ -122,6 +122,7 @@ ProposalList::ProposalList(const PlatformStyle *platformStyle, QWidget *parent) 
     hlayout->addWidget(percentageWidget);
 
     QVBoxLayout *vlayout = new QVBoxLayout(this);
+    vlayout->setObjectName("proposalViewRange");
     vlayout->setSpacing(0);
 
     QTableView *view = new QTableView(this);
@@ -213,7 +214,8 @@ ProposalList::ProposalList(const PlatformStyle *platformStyle, QWidget *parent) 
 
     proposalList->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     proposalList->setModel(proposalProxyModel);
-    proposalList->setAlternatingRowColors(true);
+    proposalList->setAlternatingRowColors(false);
+    proposalList->setShowGrid(false);
     proposalList->setSelectionBehavior(QAbstractItemView::SelectRows);
     proposalList->setSortingEnabled(true);
     proposalList->sortByColumn(ProposalTableModel::StartDate, Qt::DescendingOrder);
@@ -542,6 +544,7 @@ QWidget *ProposalList::createStartDateRangeWidget()
     QSettings settings;
 
     startDateRangeWidget = new QFrame();
+    startDateRangeWidget->setStyleSheet("border: none;");
     startDateRangeWidget->setFrameStyle(QFrame::Panel | QFrame::Raised);
     startDateRangeWidget->setContentsMargins(1,1,1,1);
     QHBoxLayout *layout = new QHBoxLayout(startDateRangeWidget);
@@ -550,6 +553,7 @@ QWidget *ProposalList::createStartDateRangeWidget()
     layout->addWidget(new QLabel(tr("Start Date:")));
 
     proposalStartDate = new QDateTimeEdit(this);
+    proposalStartDate->setProperty("class2","comboBoxRangeDate");
     proposalStartDate->setCalendarPopup(true);
     proposalStartDate->setMinimumWidth(100);
 
@@ -571,6 +575,7 @@ QWidget *ProposalList::createEndDateRangeWidget()
     QSettings settings;
 
     endDateRangeWidget = new QFrame();
+    endDateRangeWidget->setStyleSheet("border: none;");
     endDateRangeWidget->setFrameStyle(QFrame::Panel | QFrame::Raised);
     endDateRangeWidget->setContentsMargins(1,1,1,1);
     QHBoxLayout *layout = new QHBoxLayout(endDateRangeWidget);
@@ -579,6 +584,7 @@ QWidget *ProposalList::createEndDateRangeWidget()
     layout->addWidget(new QLabel(tr("End Date:")));
 
     proposalEndDate = new QDateTimeEdit(this);
+    proposalEndDate->setProperty("class2","comboBoxRangeDate");
     proposalEndDate->setCalendarPopup(true);
     proposalEndDate->setMinimumWidth(100);
 
