@@ -767,27 +767,6 @@ QLineEdit#proposalWidget, QLineEdit#amountWidget, QLineEdit#yesVotesWidget, QLin
     border:0px;
     min-height: 30px !important;
 }
-QComboBox#startDateWidget, QComboBox#endDateWidget{
-    background-color: rgb(17,17,17);
-    border:0px;
-    padding: 3px 5px 3px 5px;
-    color:#fff;
-    min-height: 24px !important;
-}
-#startDateWidget::down-arrow, #endDateWidget::down-arrow {
-    border-image: url(':/images/drkblue/drkblue_downArrow') 0 0 0 0 stretch stretch;
-}
-#startDateWidget::drop-down, #endDateWidget::drop-down {
-    width:25px;
-    border:3px red;
-}
-QComboBox#startDateWidget QListView, QComboBox#endDateWidget QListView{
-    background-color: rgb(17,17,17);
-    border:0px;
-    border-radius: 5px;
-    padding-right:1px;
-    padding-left:1px;
-}
 
 /*
  * Masternodes Page
@@ -953,4 +932,31 @@ QCalendarWidget QAbstractItemView:enabled
 /* days in other months */
 QCalendarWidget QAbstractItemView:disabled {
     color: rgb(64, 64, 64);
+}
+
+
+[class2="comboBoxRangeDate"]{
+    background-color: rgb(17,17,17);
+    border:0px;
+    padding: 3px 5px 3px 5px;
+    color:#fff;
+    min-height: 24px !important;
+}
+[class2="comboBoxRangeDate"]::down-arrow, [class2="comboBoxRangeDate"]::down-arrow {
+    border-image: url(':/images/drkblue/drkblue_downArrow') 0 0 0 0 stretch stretch;
+}
+[class2="comboBoxRangeDate"]::drop-down, [class2="comboBoxRangeDate"]::drop-down {
+    width:25px;
+    border:3px red;
+}
+[class2="comboBoxRangeDate"] QListView{
+    background-color: rgb(40, 40, 40);
+    border:0px;
+    border-radius: 5px;
+    padding-right:1px;
+    padding-left:1px;
+}
+
+#proposalViewRange{
+    border: 0px;
 }
