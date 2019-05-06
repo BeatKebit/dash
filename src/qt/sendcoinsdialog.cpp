@@ -1109,7 +1109,7 @@ void SendCoinsDialog::on_copyPacs_clicked()
     QToolTip::showText(ui->copyPacs->mapToGlobal(QPoint(10,10)), "Copied PACs to clipboard!",ui->copyPacs);
 }
 
-/** Invert the currency convertor */
+/** Invert the currency convertor tool PAC - USD */
 void SendCoinsDialog::on_btnInvertCurrency_clicked()
 {
     QString toConvert = ui->lineConvertCurrency->text();
