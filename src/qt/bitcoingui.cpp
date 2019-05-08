@@ -177,8 +177,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     this->setStyleSheet(GUIUtil::loadStyleSheet());
 
     /* Setting the default Pac Theme */
-    //QSettings settings;
-    //settings.setValue("theme", "");
+    settings.setValue("theme", "drkblue");
 
 
     /* Open CSS when configured */
