@@ -956,7 +956,7 @@ QString getThemeName()
     if(!theme.isEmpty()){
         return theme;
     }
-    return QString("light");  
+    return QString("drkblue");
 }
 void setGUITextColor(){
     QString theme = getThemeName();
