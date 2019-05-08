@@ -726,6 +726,11 @@ QLineEdit#addressWidget, QLineEdit#tAmountWidget, QComboBox#dateWidget, QComboBo
 #addressWidget{
     height: 30px;
 }
+#detailText{
+    background: #7f7f7f;
+    color: white;
+    border-radius: 7px;
+}
 /*
  * Private Page
  */
