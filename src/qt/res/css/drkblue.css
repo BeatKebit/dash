@@ -723,7 +723,9 @@ QLineEdit#addressWidget, QLineEdit#tAmountWidget, QComboBox#dateWidget, QComboBo
     border:0px;
     min-height: 24px !important;
 }
-
+#addressWidget{
+    height: 30px;
+}
 /*
  * Private Page
  */

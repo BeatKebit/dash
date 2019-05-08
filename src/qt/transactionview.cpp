@@ -73,6 +73,7 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     hlayout->addWidget(instantsendWidget);
 
     dateWidget = new QComboBox(this);
+    dateWidget->setObjectName("dateWidget");
     if (platformStyle->getUseExtraSpacing()) {
         dateWidget->setFixedWidth(120);
     } else {
@@ -89,6 +90,7 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     hlayout->addWidget(dateWidget);
 
     typeWidget = new QComboBox(this);
+    typeWidget->setObjectName("typeWidget");
     if (platformStyle->getUseExtraSpacing()) {
         typeWidget->setFixedWidth(TYPE_COLUMN_WIDTH);
     } else {
@@ -138,6 +140,7 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     vlayout->setSpacing(0);
 
     QTableView *view = new QTableView(this);
+    view->setObjectName("transactionsTable");
     vlayout->addLayout(hlayout);
     vlayout->addWidget(createDateRangeWidget());
     vlayout->addWidget(view);
@@ -227,7 +230,8 @@ void TransactionView::setModel(WalletModel *_model)
 
         transactionView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         transactionView->setModel(transactionProxyModel);
-        transactionView->setAlternatingRowColors(true);
+        transactionView->setAlternatingRowColors(false);
+        transactionView->setShowGrid(false);
         transactionView->setSelectionBehavior(QAbstractItemView::SelectRows);
         transactionView->setSelectionMode(QAbstractItemView::ExtendedSelection);
         transactionView->setSortingEnabled(true);
