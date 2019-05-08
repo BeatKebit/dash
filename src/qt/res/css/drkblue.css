@@ -669,7 +669,14 @@ QLineEdit#addressWidget, QLineEdit#tAmountWidget, QComboBox#dateWidget, QComboBo
     border:0px;
     min-height: 24px !important;
 }
-
+#addressWidget{
+    height: 30px;
+}
+#detailText{
+    background: #7f7f7f;
+    color: white;
+    border-radius: 7px;
+}
 /*
  * Private Page
  */
