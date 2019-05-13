@@ -95,37 +95,44 @@ QTabWidget::pane {
     border: 0px !important;
     border-radius:15px;
 }
-/* Style the tab using the tab sub-control. Note that it reads QTabBar _not_ QTabWidget */
+/* Style the tab using the tab sub-control. Note that it reads QTabBar _not_ QTabWidget*/
 QTabBar{
     margin-left: 20px;
 }
 QTabBar::tab {
     background:#1D1D1D;
     border: 0px solid transparent;
-    border-bottom-color: transparent; /* same as the pane color */
+    border-bottom-color: transparent;
     padding: 1px;
     width: 250px;
     color:#FFFFFF;
     min-height: 25px;
 }
-QTabBar::tab:hover, QTabBar::tab:hover {
+QTabBar::tab:hover {
     background-color: #202020 !important;
 }
 QTabBar::tab:selected{
-    background-color: #F4EA13 !important;
-    border: 1px solid black !important;
+    border: none !important;
     color: black;
+    border-color: transparent !important;
+    border-bottom-color: transparent !important;
+    background-color: #F4EA13 !important;
 }
 QTabBar::tab {
-    background: rgb(50,50,50);
+/*    background: rgb(50,50,50);*/
     width:100px;
+    border-radius: 8px;
+    min-width: 150px;
+
+    margin-left: 12px;
+    border-radius: 8px;
+    background-color: #1D1D1D !important;
+    min-height: 25px;
+    width: 200px;
+
 }
 QTabBar::pane {
     background-color: rgba(50,50,50,0.35);
-}
-QTabBar::tab:selected {
-    border-color: transparent !important;
-    border-bottom-color: transparent !important;
 }
 /* Global Progress Bar styles */
 QProgressBar {
@@ -781,21 +788,11 @@ QLineEdit#proposalWidget, QLineEdit#amountWidget, QLineEdit#yesVotesWidget, QLin
 MasternodeList > QTabBar::tab{
     min-width:180px;
 }
+
 #filterLineEdit{
     background-color: #0B0B0B;
     border-radius: 12px;
     height: 24px;
-}
-#tabWidget>QTabBar::tab {
-    margin-left: 12px;
-    border-radius: 8px;
-    background-color: #1D1D1D !important;
-    min-height: 25px;
-    width: 200px;
-}
-#tabWidget>QTabBar::tab:selected{
-    background-color: #F4EA13 !important;
-    border: 1px solid transparent !important;
 }
 #checkBoxMyMasternodesOnly{
     min-width: 150px;
@@ -807,9 +804,6 @@ MasternodeList > QTabBar::tab{
 
 #OptionsDialog > #resetButton{
     width:210px !important;
-}
-#tabWidget_OptionsDialog>QTabBar::tab {
-    border-radius: 8px;
 }
 
 /*
@@ -842,49 +836,6 @@ MasternodeList > QTabBar::tab{
     font-size: 13px;
     border-radius: 10px;
 }
-
-
-/*
-    QToolBox: the one it was used in sendcoinsdialog for the recepients and advancedsettings
-*/
-QToolBox {
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: transparent;
-    font-weight: bold;
-    border: 0px;
-}
-QToolBox > QScrollArea > #qt_scrollarea_viewport > QWidget {
-    background: transparent;
-}
-QToolBox > QWidget {
-    background-color: transparent;
-}
-QToolBox::tab {
-    padding-left: 10px;
-    background-color: rgba(200,200,200,0.4);
-}
-QToolBox::tab:first, QToolBox::tab:last {
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-}
-QToolBox::tab:selected {
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-}
-QToolBox::tab::title {
-    image: none;
-    subcontrol-position: top left;
-    subcontrol-origin: margin;
-    color: rgb(255, 255, 255);
-}
-#toolBox>QTabBar::tab {
-    border-radius: 8px;
-    min-width: 150px;
-}
-
 
 /*
     QCalendarWidget:
