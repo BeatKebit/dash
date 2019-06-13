@@ -88,7 +88,7 @@ MasternodeList::MasternodeList(const PlatformStyle* platformStyle, QWidget* pare
         if(str.compare("QLineEdit") == 0 || str.compare("QValidatedLineEdit") == 0)
             widgets.at(i)->setAttribute(Qt::WA_MacShowFocusRect, false);
     }
-    ui->tableWidgetMasternodes->setAlternatingRowColors(false);
+    //ui->tableWidgetMasternodes->setAlternatingRowColors(false);
 
 }
 

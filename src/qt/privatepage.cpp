@@ -49,7 +49,8 @@ PrivatePage::PrivatePage(const PlatformStyle *platformStyle, QWidget *parent) :
     currentImmatureBalance(-1),
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
-    currentWatchImmatureBalance(-1)
+    currentWatchImmatureBalance(-1),
+    cachedNumISLocks(-1)
 {
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
@@ -119,14 +120,14 @@ void PrivatePage::setBalance(const CAmount& balance, const CAmount& unconfirmedB
     currentWatchImmatureBalance = watchImmatureBalance;
 
     ui->labelAnonymized->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, anonymizedBalance, false, BitcoinUnits::separatorAlways));
-
     // for symmetry reasons also show immature label when the watch-only one is shown
 
+    /* :v this was removed after merge
     static int cachedTxLocks = 0;
 
     if(cachedTxLocks != nCompleteTXLocks){
         cachedTxLocks = nCompleteTXLocks;
-    }
+    }*/
 }
 
 void PrivatePage::setClientModel(ClientModel *model)

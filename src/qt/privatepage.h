@@ -59,6 +59,7 @@ private:
     CAmount currentWatchImmatureBalance;
     int nDisplayUnit;
     bool fShowAdvancedPSUI;
+    int cachedNumISLocks;
 
     TxViewDelegate *txdelegate;
 
