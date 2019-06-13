@@ -7,7 +7,7 @@
 
 #include "amount.h"
 #include "masternodelist.h"
-#include "proposallist.h"
+//#include "proposallist.h"
 #include "walletframe.h"
 
 #include <QStackedWidget>
@@ -70,7 +70,7 @@ private:
     AddressBookPage *usedSendingAddressesPage;
     AddressBookPage *usedReceivingAddressesPage;
     MasternodeList *masternodeListPage;
-    ProposalList *proposalList;
+    //ProposalList *proposalList;
     PrivatePage *privatePage;
 
     TransactionView *transactionView;

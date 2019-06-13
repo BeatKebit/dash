@@ -93,8 +93,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
         masternodeListPage = new MasternodeList(platformStyle);
         addWidget(masternodeListPage);
     }
-    proposalList = new ProposalList(platformStyle);
-    addWidget(proposalList);
+    //proposalList = new ProposalList(platformStyle);
+    //addWidget(proposalList);
     privatePage = new PrivatePage(platformStyle);
     addWidget(privatePage);
 
@@ -248,7 +248,7 @@ void WalletView::gotoHistoryPage()
 
 void WalletView::gotoProposalPage()
 {
-    setCurrentWidget(proposalList);
+    //setCurrentWidget(proposalList);
 }
 
 void WalletView::gotoPrivatePage()

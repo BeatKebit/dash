@@ -37,7 +37,7 @@ class WalletModel;
 class HelpMessageDialog;
 class ModalOverlay;
 class MasternodeList;
-class ProposalList;
+//class ProposalList;
 
 class CWallet;
 

@@ -90,9 +90,6 @@ QT_MOC_CPP = \
   qt/moc_overviewpage.cpp \
   qt/moc_peertablemodel.cpp \
   qt/moc_paymentserver.cpp \
-  qt/moc_proposalfilterproxy.cpp \
-  qt/moc_proposaltablemodel.cpp \
-  qt/moc_proposallist.cpp \
   qt/moc_qrdialog.cpp \
   qt/moc_qvalidatedlineedit.cpp \
   qt/moc_qvaluecombobox.cpp \
@@ -168,10 +165,6 @@ BITCOIN_QT_H = \
   qt/paymentserver.h \
   qt/peertablemodel.h \
   qt/platformstyle.h \
-  qt/proposalfilterproxy.h \
-  qt/proposallist.h \
-  qt/proposalrecord.h \
-  qt/proposaltablemodel.h \
   qt/qrdialog.h \
   qt/qvalidatedlineedit.h \
   qt/qvaluecombobox.h \
@@ -519,10 +512,6 @@ BITCOIN_QT_WALLET_CPP = \
   qt/overviewpage.cpp \
   qt/paymentrequestplus.cpp \
   qt/paymentserver.cpp \
-  qt/proposalfilterproxy.cpp \
-  qt/proposallist.cpp \
-  qt/proposalrecord.cpp \
-  qt/proposaltablemodel.cpp \
   qt/qrdialog.cpp \
   qt/receivecoinsdialog.cpp \
   qt/receiverequestdialog.cpp \
